@@ -34,7 +34,8 @@ export const userSchema:Schema = new Schema({
     },
     createdAt:{
         type: Date,
-        default: Date.now
+        default: Date.now,
+        select: false
     }
 })
 
