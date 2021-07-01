@@ -2,11 +2,24 @@ import { Request, Response } from "express"
 
 
 export = {
-    async test(req:Request, res:Response){
+    async uploadReceipt(req:Request, res:Response){
         try{
-            return res.json({msg: "Nova mensagem com controller"})
+            return res.json({msg: "Upload"})
         }catch{
-            return res.json({msg: "Erro"})
+
+        }
+    },
+    async listReceipts (req:Request, res:Response){
+        try{
+            return res.json({msg: "List"})
+        }catch{
          }
+    },
+    async showReceipt(req:Request, res:Response){
+        try {
+            return res.json({msg: "Show"})
+        }catch {
+            
+        }
     }
 }
