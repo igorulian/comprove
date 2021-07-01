@@ -1,17 +1,23 @@
 import { Request, Response } from "express";
+import { sendMail } from "../services/mail";
 import { handleLogin, handleRegister } from "./auth.handler";
 
 export = {
     async login(req:Request, res:Response){
         try{
-            return handleLogin(req,res)
+            return await handleLogin(req,res)
         }catch{
-            res.status(400).send({error: 'Falha na autenticação'})
+            return res.status(400).send({error: 'Falha na autenticação'})
         }
     },
     async register(req:Request, res:Response){
         try{
-            return handleRegister(req,res)
+            const handler:Response = await handleRegister(req,res)
+
+            if(handler.statusCode === 200)
+                sendMail(req.body.email)
+
+            return handler
         }catch{
             return res.status(400).send({error: 'Falha ao efetuar registro.'})
         }
