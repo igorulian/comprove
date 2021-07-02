@@ -48,7 +48,7 @@ export = {
     limits: {
         fileSize: 20 * 1024 * 1024,
     },
-    fileFilter: (req,file,cb) => {
+    fileFilter: (req,file,cb) => { //i still have to fix this types
         const allowedMimes = [
             'image/jpeg',
             'image/pjpeg',

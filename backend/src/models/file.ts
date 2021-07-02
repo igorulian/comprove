@@ -2,7 +2,8 @@ import { Document, Schema, model } from 'mongoose'
 
 export interface IFile extends Document {
     originalname: string;
-    filepath: string;
+    location: string;
+    mimetype: string;
     ownerid: string;
     createdAt: Date;
 }
@@ -13,9 +14,13 @@ export const fileSchema:Schema = new Schema({
         required: true,
         unique: false,
     },
-    filepath:{
+    location:{
         type: String,
         require: true,
+    },
+    mimetype:{
+        type: String,
+        require: true
     },
     ownerid:{
         type: String,

@@ -1,5 +1,11 @@
 declare namespace Express {
     interface Request {
-      userid?: String;
+      userid?: string;
     }
+}
+
+declare namespace Multer {
+  interface File {
+    location?: string;
+  }
 }
