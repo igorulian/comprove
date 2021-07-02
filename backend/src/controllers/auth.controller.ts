@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { sendMail } from "../services/mail";
-import { handleLogin, handleRegister } from "./auth.handler";
+import { handleLogin, handleRegister } from "../handlers/auth.handler";
 
 export = {
     async login(req:Request, res:Response){

@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { handleUpload, handleList } from "./file.handler"
+import { handleUpload, handleList } from "../handlers/file.handler"
 
 export = {
     async uploadReceipt(req:Request, res:Response){

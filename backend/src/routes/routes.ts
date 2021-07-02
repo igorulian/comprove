@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express'
-import controller from '../controllers/controller'
+import controller from '../controllers/file.controller'
 import {authMiddleware} from '../middlewares/auth.middleware'
 import multer from 'multer'
 import multerConfig from '../config/multer'
