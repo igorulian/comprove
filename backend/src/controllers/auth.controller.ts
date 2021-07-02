@@ -14,8 +14,7 @@ export = {
         try{
             const handler:Response = await handleRegister(req,res)
 
-            if(handler.statusCode === 200)
-                sendMail(req.body.email, 'register')
+            if(handler.statusCode === 200) sendMail(req.body.email, 'register')
 
             return handler
         }catch{

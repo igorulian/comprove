@@ -29,8 +29,6 @@ async function handleLogin(req:Request, res:Response){
     
     user.password = undefined
 
-    console.log('uid: ' + user._id)
-
     const response = {
         user,
         token: generateToken({id: user._id})
