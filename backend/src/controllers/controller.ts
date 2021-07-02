@@ -6,7 +6,7 @@ export = {
         try{
             return res.json(req.file)
         }catch{
-
+            return res.status(400).send({error: 'Erro ao enviar arquivo'})
         }
     },
     async listReceipts(req:Request, res:Response){

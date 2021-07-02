@@ -29,9 +29,11 @@ async function handleLogin(req:Request, res:Response){
     
     user.password = undefined
 
+    console.log('uid: ' + user._id)
+
     const response = {
         user,
-        token: generateToken({id: user.id})
+        token: generateToken({id: user._id})
     }
     return res.status(200).send(response)
 }   
@@ -51,7 +53,7 @@ async function handleRegister(req:Request, res:Response){
     const response = {
         username: newUser.username,
         email: newUser.email,
-        token: generateToken({id: newUser.id})
+        token: generateToken({id: newUser._id})
     }
 
     return res.status(200).send(response)

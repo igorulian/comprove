@@ -23,9 +23,9 @@ export function authMiddleware(req:Request,res:Response,next:NextFunction){
     jwt.verify(token, authConfig.secret, (err, decoded) => {
         if(err) return res.status(401).send({error: 'Token invalid'})
 
-    req.user.id = decoded.id
+        req.userid = decoded.id
 
-    return next()
+        return next()
 
     })
 }

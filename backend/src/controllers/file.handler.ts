@@ -20,17 +20,17 @@ async function handleList(req:Request, res:Response){
     
     // user.password = undefined
 
-    // return res.status(200).send(response)
+    return res.status(200).send({})
 }   
 
 async function handleUpload(req:Request, res:Response){
-    const data = {
-        originalname: '',
-        filepath: '',
-        ownerid: req.user.id
-    }
+    // const data = {
+    //     originalname: '',
+    //     filepath: '',
+    //     ownerid: req.user.id
+    // }
 
-    const newFile:IFile = await File.create({data})
+    // const newFile:IFile = await File.create({data})
 
-    return res.status(200).send(newFile)
+    return res.status(200).send({})
 }   

@@ -17,7 +17,7 @@ const storageType = {
             crypto.randomBytes(16, (err, hash) => {
                 // if( err ) cb(err)
 
-                const userid = req.user.id
+                const userid = req.userid
                 const filename = `${userid}-${hash.toString('hex')}`
 
                 cb(err,filename)
@@ -33,7 +33,7 @@ const storageType = {
             crypto.randomBytes(16, (err, hash) => {
                 if( err ) cb(err)
 
-                const userid = req.user.id
+                const userid = req.userid
                 const filename = `${userid}-${hash.toString('hex')}`
 
                 cb(null,filename)
