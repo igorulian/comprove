@@ -4,6 +4,13 @@ import { FileModel, IFile } from "../models/file";
 
 const File:Model<IFile> = FileModel
 
+type fileType = {
+    originalname:string,
+    location:string,
+    mimetype:string,
+    ownerid:string
+}
+
 async function handleList(req:Request, res:Response){
     // const {password,email} = req.body
 
@@ -24,13 +31,18 @@ async function handleList(req:Request, res:Response){
 }   
 
 async function handleUpload(req:Request, res:Response){
-    // const data = {
-    //     originalname: '',
-    //     filepath: '',
-    //     ownerid: req.user.id
-    // }
+    const {originalname, location, mimetype} = req.file
 
-    // const newFile:IFile = await File.create({data})
+        const newFileData:fileType = {
+            originalname,
+            location,
+            mimetype,
+            ownerid: req.userid
+        }
 
-    return res.status(200).send({})
+    const newFile = await File.create(newFileData)
+
+    return res.status(200).send(newFile)
 }   
+
+export {handleList, handleUpload}

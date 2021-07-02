@@ -1,12 +1,11 @@
 import { Request, Response } from "express"
-
+import { handleUpload, handleList } from "./file.handler"
 
 export = {
     async uploadReceipt(req:Request, res:Response){
         try{
-            const {originalname, location, mimetype} = req.file
-
-            return res.json(req.file)
+            const newFile = await handleUpload(req,res)
+            return newFile
         }catch{
             return res.status(400).send({error: 'Erro ao enviar arquivo'})
         }
