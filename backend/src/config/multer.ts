@@ -53,7 +53,8 @@ export = {
             'image/jpeg',
             'image/pjpeg',
             'image/png',
-            'image/gif'
+            'image/gif',
+            'application/pdf'
         ]
 
         if(allowedMimes.includes(file.mimetype)){
