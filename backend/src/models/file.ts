@@ -30,13 +30,11 @@ export const fileSchema:Schema = new Schema({
     },
     category:{
         type: String,
-        required: true,
         default: 'geral'
     },
     title:{
         type: String,
-        required: true,
-        default: ''
+        default: 'Comprovante'
     },
     createdAt:{
         type: Date,

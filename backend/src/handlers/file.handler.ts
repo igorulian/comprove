@@ -10,7 +10,7 @@ type fileType = {
     mimetype:string,
     ownerid:string,
     category:string,
-    title:string
+    title:string ,
 }
 
 type searchTermType = {
@@ -32,8 +32,10 @@ async function handleList(req:Request, res:Response){
 }   
 
 async function handleUpload(req:Request, res:Response){
-    const category:string = req.query.category.toString()
-    const title:string = req.query.title.toString()
+    const {category,title} = req.query
+    
+    const categorytxt:string|null = category ? category.toString() : undefined
+    const titletxt:string|null = title ? title.toString() : undefined
 
     const {originalname, location, mimetype} = req.file
 
@@ -41,8 +43,8 @@ async function handleUpload(req:Request, res:Response){
             originalname,
             location,
             mimetype,
-            category,
-            title,
+            category: categorytxt,
+            title: titletxt,
             ownerid: req.userid
         }
 
