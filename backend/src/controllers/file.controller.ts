@@ -4,7 +4,7 @@ import { handleUpload, handleList } from "../handlers/file.handler"
 export = {
     async uploadReceipt(req:Request, res:Response){
         try{
-            const newFile = await handleUpload(req,res)
+            const newFile = await handleUpload(req, res)
             return newFile
         }catch{
             return res.status(400).send({error: 'Erro ao enviar arquivo'})
@@ -12,8 +12,9 @@ export = {
     },
     async listReceipts(req:Request, res:Response){
         try{
-            return res.json({msg: "List"})
+            return await handleList(req, res)
         }catch{
+            return res.status(400).send({error: 'Erro ao listar arquivos'})
          }
     },
     async showReceipt(req:Request, res:Response){

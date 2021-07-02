@@ -12,22 +12,11 @@ type fileType = {
 }
 
 async function handleList(req:Request, res:Response){
-    // const {password,email} = req.body
-
-    // if(!password || !email)
-    //     return res.status(400).send({error: 'Campos inválidos'}) 
-
-    // const file:IFile = await File.findOne({email}).select('+password')
-
-    // if(!user) 
-    //     return res.status(400).send({error: 'Usuário não encontrado'})
-
-    // if(!await bcrypt.compare(password, user.password))
-    //     return res.status(400).send({error: 'Senha inválida'})
+    const userid:string = req.userid
     
-    // user.password = undefined
+    const files:IFile[] = await File.find({ownerid: userid})
 
-    return res.status(200).send({})
+    return res.status(200).send(files)
 }   
 
 async function handleUpload(req:Request, res:Response){
@@ -40,7 +29,7 @@ async function handleUpload(req:Request, res:Response){
             ownerid: req.userid
         }
 
-    const newFile = await File.create(newFileData)
+    const newFile:IFile = await File.create(newFileData)
 
     return res.status(200).send(newFile)
 }   
