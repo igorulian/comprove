@@ -12,10 +12,20 @@ type fileType = {
     category:string,
 }
 
+type searchTermType = {
+    ownerid: string;
+    category: string;
+} | {
+    ownerid: string;
+}
+
 async function handleList(req:Request, res:Response){
+    const {category} = req.params
     const userid:string = req.userid
-    
-    const files:IFile[] = await File.find({ownerid: userid})
+
+    const searchTerm:searchTermType = category ? {ownerid: userid, category} : {ownerid: userid}
+
+    const files:IFile[] = await File.find(searchTerm)
 
     return res.status(200).send(files)
 }   
