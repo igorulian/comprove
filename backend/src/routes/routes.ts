@@ -7,7 +7,7 @@ import multerConfig from '../config/multer'
 const routes:Router = Router()
 
 routes.use(authMiddleware)
-routes.post('/upload/:category*?',multer(multerConfig).single('file'), controller.uploadReceipt)
+routes.post('/upload',multer(multerConfig).single('file'), controller.uploadReceipt)
 routes.get('/list/:category*?', controller.listReceipts)
 routes.get('/show/:id', controller.showReceipt)
 

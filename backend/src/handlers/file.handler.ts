@@ -10,6 +10,7 @@ type fileType = {
     mimetype:string,
     ownerid:string,
     category:string,
+    title:string
 }
 
 type searchTermType = {
@@ -31,7 +32,9 @@ async function handleList(req:Request, res:Response){
 }   
 
 async function handleUpload(req:Request, res:Response){
-    const {category} = req.params
+    const category:string = req.query.category.toString()
+    const title:string = req.query.title.toString()
+
     const {originalname, location, mimetype} = req.file
 
         const newFileData:fileType = {
@@ -39,6 +42,7 @@ async function handleUpload(req:Request, res:Response){
             location,
             mimetype,
             category,
+            title,
             ownerid: req.userid
         }
 

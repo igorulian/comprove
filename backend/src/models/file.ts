@@ -7,6 +7,7 @@ export interface IFile extends Document {
     ownerid: string;
     createdAt: Date;
     category: string;
+    title: string;
 }
 
 export const fileSchema:Schema = new Schema({
@@ -31,6 +32,11 @@ export const fileSchema:Schema = new Schema({
         type: String,
         required: true,
         default: 'geral'
+    },
+    title:{
+        type: String,
+        required: true,
+        default: ''
     },
     createdAt:{
         type: Date,
