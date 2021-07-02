@@ -8,7 +8,8 @@ type fileType = {
     originalname:string,
     location:string,
     mimetype:string,
-    ownerid:string
+    ownerid:string,
+    category:string,
 }
 
 async function handleList(req:Request, res:Response){
@@ -20,12 +21,14 @@ async function handleList(req:Request, res:Response){
 }   
 
 async function handleUpload(req:Request, res:Response){
+    const {category} = req.params
     const {originalname, location, mimetype} = req.file
 
         const newFileData:fileType = {
             originalname,
             location,
             mimetype,
+            category,
             ownerid: req.userid
         }
 

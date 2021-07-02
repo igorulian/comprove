@@ -3,9 +3,8 @@ import { handleUpload, handleList } from "../handlers/file.handler"
 
 export = {
     async uploadReceipt(req:Request, res:Response){
-        try{
-            const newFile = await handleUpload(req, res)
-            return newFile
+        try{     
+            return await handleUpload(req, res)
         }catch{
             return res.status(400).send({error: 'Erro ao enviar arquivo'})
         }
@@ -21,7 +20,7 @@ export = {
         try {
             return res.json({msg: "Show"})
         }catch {
-            
+            return res.status(400).send({error: 'Erro ao mostrar arquivo'})
         }
     }
 }

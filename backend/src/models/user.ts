@@ -7,6 +7,7 @@ export interface IUser extends Document {
     avatarUrl: string;
     password: string;
     createdAt: Date;
+    categories: string[];
 }
 
 export const userSchema:Schema = new Schema({
@@ -26,6 +27,10 @@ export const userSchema:Schema = new Schema({
         type: String,
         required: false,
         default: ''
+    },
+    categories:{
+        type: [String],
+        default: []
     },
     password:{
         type: String,
