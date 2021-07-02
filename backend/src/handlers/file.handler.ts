@@ -34,8 +34,8 @@ async function handleList(req:Request, res:Response){
 async function handleUpload(req:Request, res:Response){
     const {category,title} = req.query
     
-    const categorytxt:string|null = category ? category.toString() : undefined
-    const titletxt:string|null = title ? title.toString() : undefined
+    const categorytxt:string|undefined = category ? category.toString() : undefined
+    const titletxt:string|undefined = title ? title.toString() : undefined
 
     const {originalname, location, mimetype} = req.file
 
