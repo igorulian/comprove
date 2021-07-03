@@ -4,6 +4,7 @@ import { TabRoutes } from './routes';
 import { AuthRoutes } from './auth.routes';
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import Loading from './components/loading'
 
 import {View, Text} from 'react-native'
 
@@ -20,11 +21,7 @@ const App:React.FC = () => {
   })
 
   if(isLoading)
-    return (
-      <View> 
-        <Text> LOADING </Text>
-      </View>
-    )
+    return <Loading/>
 
   return (
     <NavigationContainer>
