@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { SafeAreaView,Text} from 'react-native';
 
-export default function Auth(){
+export default function Register(){
 
     return (
         <SafeAreaView>
-            <Text> AUTH</Text>
+            <Text> REGISTER </Text>
         </SafeAreaView>
     )
 }

@@ -2,19 +2,34 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { TabRoutes } from './routes';
 import { AuthRoutes } from './auth.routes';
+import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import {View, Text} from 'react-native'
 
 const App:React.FC = () => {
+  const [isLoading, setLoading] = useState(true)
+  const [isAuth, setAuth] = useState(false)
 
-  const isAuthenticated:boolean = true
+  useEffect(() => {
+    const token = 'aaa'
+    const hasToken = token ? true : false
+
+    setAuth(hasToken)
+    setLoading(false)
+  })
+
+  if(isLoading)
+    return (
+      <View> 
+        <Text> LOADING </Text>
+      </View>
+    )
 
   return (
     <NavigationContainer>
 
-      {isAuthenticated ?
-        <TabRoutes/>
-      :
-        <AuthRoutes/>
-      }
+      {isAuth ? <TabRoutes/> : <AuthRoutes/>}
 
     </NavigationContainer>
   );
