@@ -6,19 +6,21 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loading from './components/loading'
 
-import {View, Text} from 'react-native'
-
 const App:React.FC = () => {
   const [isLoading, setLoading] = useState(true)
   const [isAuth, setAuth] = useState(false)
 
   useEffect(() => {
-    const token = 'aaa'
-    const hasToken = token ? true : false
+    const checkToken = async() =>{
+      const token = await AsyncStorage.getItem('@token')
+      const hasToken = token ? true : false
+  
+      setAuth(hasToken)
+      setLoading(false)
+    }
 
-    setAuth(hasToken)
-    setLoading(false)
-  })
+    checkToken()
+  },[])
 
   if(isLoading)
     return <Loading/>
