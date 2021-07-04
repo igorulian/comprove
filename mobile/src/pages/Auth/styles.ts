@@ -33,15 +33,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 10
     },
-    loginwithContent:{
+    loginwithContentGoogle:{
         flexDirection: 'row',
         width: 130,
         height: 45,
         padding: 5,
         borderRadius: 15,
-        backgroundColor: '#fff',
+        backgroundColor: '#e34133',
         margin: 10,
-        borderWidth: .5,
+        borderWidth: .3,
         borderColor: '#c4c4c4',
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -54,9 +54,36 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
-    loginwithText:{
+    loginwithContentFacebook:{
+        flexDirection: 'row',
+        width: 130,
+        height: 45,
+        padding: 5,
+        borderRadius: 15,
+        backgroundColor: '#24479b',
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    loginwithTextGoogle:{
         marginLeft: 5,
-        fontSize: 9
+        fontSize: 9,
+        color: '#fff',
+        fontWeight: 'bold'
+    },
+    loginwithTextFacebook:{
+        marginLeft: 5,
+        fontSize: 9,
+        color: '#fff',
+        fontWeight: 'bold'
     },
     logoContainer:{
         alignItems: 'center',

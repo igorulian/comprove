@@ -57,14 +57,14 @@ export default function Register(){
 
             <View style={styles.loginwithContainer}>
 
-                <TouchableOpacity style={styles.loginwithContent}>
-                    <AntDesign name="facebook-square" color={'#f78139'} size={20} />    
-                    <Text style={styles.loginwithText}> Entrar com Facebook</Text>
+                <TouchableOpacity style={styles.loginwithContentFacebook}>
+                    <AntDesign name="facebook-square" color={'#fff'} size={20} />    
+                    <Text style={styles.loginwithTextFacebook}> Entrar com Facebook</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.loginwithContent}>
-                    <AntDesign name="google" color={'#f78139'} size={20} />
-                    <Text style={styles.loginwithText}> Entrar com Google</Text>
+                <TouchableOpacity style={styles.loginwithContentGoogle}>
+                    <AntDesign name="google" color={'#fff'} size={20} />
+                    <Text style={styles.loginwithTextGoogle}> Entrar com Google</Text>
                 </TouchableOpacity>
 
             </View>
