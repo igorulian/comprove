@@ -2,7 +2,6 @@ import { Document, Schema, model } from 'mongoose'
 import bcrypt from 'bcryptjs'
 
 export interface IUser extends Document {
-    username: string;
     email: string;
     avatarUrl: string;
     password: string;
@@ -11,11 +10,6 @@ export interface IUser extends Document {
 }
 
 export const userSchema:Schema = new Schema({
-    username:{
-        type: String,
-        required: true,
-        unique: false,
-    },
     email:{
         type: String,
         unique: true,
