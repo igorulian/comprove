@@ -26,6 +26,7 @@ export default function Register(){
 
             <View style={styles.content}>
                 <View style={styles.form}>
+                    <MaterialCommunityIcons name="email-outline" color={'#c4c4c4'} size={20} style={styles.inputIcon} />
                     <TextInput
                         style={styles.input}
                         onChangeText={(txt:string) => setEmail(txt)}
@@ -34,6 +35,7 @@ export default function Register(){
                 </View>
 
                 <View style={styles.form}>
+                    <MaterialCommunityIcons name="key-outline" color={'#c4c4c4'} size={20} style={styles.inputIcon} />
                     <TextInput
                         style={styles.input}
                         onChangeText={(txt:string) => setPassword(txt)}
@@ -42,6 +44,7 @@ export default function Register(){
                 </View>
 
                 <View style={styles.form}>
+                    <MaterialCommunityIcons name="key-outline" color={'#c4c4c4'} size={20} style={styles.inputIcon} />
                     <TextInput
                         style={styles.input}
                         onChangeText={(txt:string) => setPassword(txt)}

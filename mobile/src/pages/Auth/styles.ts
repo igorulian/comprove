@@ -3,14 +3,15 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     form:{
-        marginBottom: 20
+        marginBottom: 20,
+        justifyContent: 'center'
     },
     content:{
         alignItems: 'center',
         marginTop: 50
     },
     input: {
-        paddingLeft: 20,
+        paddingLeft: 38,
         height: 40,
         width: 250,
         borderWidth: 1,
@@ -120,6 +121,10 @@ const styles = StyleSheet.create({
     },
     fillSpace:{
         height: 100
+    },
+    inputIcon:{
+        position: 'absolute',
+        marginLeft: 10
     }
 })
 

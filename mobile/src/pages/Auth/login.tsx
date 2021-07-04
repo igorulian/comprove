@@ -23,6 +23,7 @@ export default function Login(){
 
             <View style={styles.content}>
                 <View style={styles.form}>
+                    <MaterialCommunityIcons name="email-outline" color={'#c4c4c4'} size={20} style={styles.inputIcon} />
                     <TextInput
                         style={styles.input}
                         onChangeText={(txt:string) => setEmail(txt)}
@@ -31,6 +32,7 @@ export default function Login(){
                 </View>
 
                 <View style={styles.form}>
+                    <MaterialCommunityIcons name="key-outline" color={'#c4c4c4'} size={20} style={styles.inputIcon} />
                     <TextInput
                         style={styles.input}
                         onChangeText={(txt:string) => setPassword(txt)}
