@@ -5,6 +5,10 @@ const styles = StyleSheet.create({
     form:{
         marginBottom: 20
     },
+    content:{
+        alignItems: 'center',
+        marginTop: 50
+    },
     input: {
         paddingLeft: 20,
         height: 40,
@@ -22,7 +26,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     buttontext:{
-        color: '#fff'
+        color: '#fff',
+        fontWeight: 'bold'
     },
     loginwithContainer:{
         flexDirection: 'row',
@@ -30,24 +35,64 @@ const styles = StyleSheet.create({
     },
     loginwithContent:{
         flexDirection: 'row',
-        width: 110,
+        width: 130,
         height: 45,
-        backgroundColor: '#f1f1f1',
+        padding: 5,
+        borderRadius: 15,
+        backgroundColor: '#fff',
         margin: 10,
+        borderWidth: .5,
+        borderColor: '#c4c4c4',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-start',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     loginwithText:{
-        marginLeft: 5
+        marginLeft: 5,
+        fontSize: 9
     },
     logoContainer:{
-        top: 0,
         alignItems: 'center',
-        marginBottom: 50
+        marginTop: 50
     },
     logoText:{
         fontSize: 20,
-        fontWeight: "bold"
+        fontWeight: 'bold'
+    },
+    orLoginButton:{
+        marginTop: 20,
+        bottom: 0,
+        alignItems: 'center',
+        marginBottom: 50
+    },
+    orLoginText:{
+        color: '#3f3f3f'
+    },
+    orLoginTextEntre:{
+        color: '#3f3f3f',
+        fontWeight: 'bold'
+    },
+    loginContainer:{
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    registerContainer:{
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    fillSpace:{
+        height: 100
     }
 })
 

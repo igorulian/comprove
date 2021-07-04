@@ -4,11 +4,17 @@ import { SafeAreaView,Text, TextInput, TouchableOpacity, View} from 'react-nativ
 import GeneralStyles from '../../generalStyles';
 import styles from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import { useNavigation } from '@react-navigation/native';
 
 export default function Register(){
     const [email,setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const navigation = useNavigation();
+
+    function goToLogin() {
+        navigation.navigate('Login')
+    }
 
     return (
         <SafeAreaView style={GeneralStyles.container}>
@@ -18,45 +24,55 @@ export default function Register(){
                 <Text style={styles.logoText}> Registre-se </Text>
             </View>
 
-            <View style={styles.form}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(txt:string) => setEmail(txt)}
-                    placeholder='Digite seu email'
-                />
-            </View>
+            <View style={styles.content}>
+                <View style={styles.form}>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(txt:string) => setEmail(txt)}
+                        placeholder='Digite seu email'
+                    />
+                </View>
 
-            <View style={styles.form}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(txt:string) => setPassword(txt)}
-                    placeholder='Digite sua senha'
-                />
-            </View>
+                <View style={styles.form}>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(txt:string) => setPassword(txt)}
+                        placeholder='Digite sua senha'
+                    />
+                </View>
 
-            <View style={styles.form}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(txt:string) => setPassword(txt)}
-                    placeholder='Confirme sua senha'
-                />
+                <View style={styles.form}>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(txt:string) => setPassword(txt)}
+                        placeholder='Confirme sua senha'
+                    />
+                </View>
+                
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttontext}> REGISTRAR </Text>
+                </TouchableOpacity>
+
             </View>
-            
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttontext}> REGISTER </Text>
-            </TouchableOpacity>
 
             <View style={styles.loginwithContainer}>
-                <View style={styles.loginwithContent}>
-                    <FontAwesome name="facebook-square" color={'#f78139'} size={30} />
-                    <Text style={styles.loginwithText}> Login with google </Text>
 
-                </View>
-                <View style={styles.loginwithContent}>
-                    <FontAwesome name="google" color={'#f78139'} size={30} />
-                    <Text style={styles.loginwithText}> Login with facebook </Text>
-                </View>
+                <TouchableOpacity style={styles.loginwithContent}>
+                    <AntDesign name="facebook-square" color={'#f78139'} size={20} />    
+                    <Text style={styles.loginwithText}> Entrar com Facebook</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.loginwithContent}>
+                    <AntDesign name="google" color={'#f78139'} size={20} />
+                    <Text style={styles.loginwithText}> Entrar com Google</Text>
+                </TouchableOpacity>
+
             </View>
+
+            <TouchableOpacity style={styles.orLoginButton} onPress={() => goToLogin()}>
+                <Text style={styles.orLoginText}> Já possui uma conta? </Text>
+                <Text style={styles.orLoginTextEntre}> Entre aqui </Text>
+            </TouchableOpacity>
 
         </SafeAreaView>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from "react-native"
 
 
-const Loading = () =>{
+const Loading:React.FC = () =>{
 
     return (
         <View>
