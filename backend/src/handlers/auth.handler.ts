@@ -30,7 +30,7 @@ async function handleLogin(req:Request, res:Response){
     user.password = undefined
 
     const response = {
-        user,
+        email,
         token: generateToken({id: user._id})
     }
     return res.status(200).send(response)
