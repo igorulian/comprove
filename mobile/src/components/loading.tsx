@@ -1,14 +1,25 @@
 import React from 'react'
-import { View, Text } from "react-native"
+import { View, Text, StyleSheet, ActivityIndicator} from "react-native"
 
 
 const Loading:React.FC = () =>{
 
     return (
-        <View>
-            <Text> LOADING </Text>
+        <View style={styles.container}>
+             <ActivityIndicator size="large" color="#f78139"/>
         </View>
     )
 }
 
+
 export default Loading
+
+
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        color: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+})

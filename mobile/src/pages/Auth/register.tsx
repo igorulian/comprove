@@ -54,8 +54,8 @@ export default function Register(){
         await api.post('/register', req)
         .then(async res => {
             const {token, email} = res.data
-            await AsyncStorage.setItem('@token', token)
-            await AsyncStorage.setItem('@email', email)
+            await AsyncStorage.setItem('@comprove:token', token)
+            await AsyncStorage.setItem('@comprove:email', email)
 
         }).catch(error => {
             return Alert.alert('Ops!', error.response.data.error)

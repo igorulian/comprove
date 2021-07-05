@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { useState } from 'react';
 import { SafeAreaView,Text, TextInput, TouchableOpacity, View, ActivityIndicator, Alert} from 'react-native';
 import GeneralStyles from '../../generalStyles';
@@ -40,8 +40,8 @@ export default function Login(){
         await api.post('/login', req)
         .then(async res => {
             const {token, email} = res.data
-            await AsyncStorage.setItem('@token', token)
-            await AsyncStorage.setItem('@email', email)
+            await AsyncStorage.setItem('@comprove:token', token)
+            await AsyncStorage.setItem('@comprove:email', email)
 
         }).catch(error => {
             return Alert.alert('Ops!', error.response.data.error)
