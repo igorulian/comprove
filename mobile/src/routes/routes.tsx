@@ -9,8 +9,6 @@ import { GestureResponderEvent, TouchableOpacity, View } from 'react-native';
 
 const Tab = createBottomTabNavigator()
 
-const color:string = '#f78139'
-
 type ButtonTypes = {
     children: React.ReactNode,
     onPress: any
