@@ -8,7 +8,7 @@ const routes:Router = Router()
 
 routes.use(authMiddleware)
 routes.post('/upload',multer(multerConfig).single('file'), controller.uploadReceipt)
-routes.get('/list/:category*?', controller.listReceipts)
+routes.get('/list', controller.listReceipts)
 routes.get('/show/:id', controller.showReceipt)
 
 

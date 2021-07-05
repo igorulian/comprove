@@ -21,12 +21,21 @@ type searchTermType = {
 }
 
 async function handleList(req:Request, res:Response){
-    const {category} = req.params
+    const {category,month} = req.query
     const userid:string = req.userid
 
-    const searchTerm:searchTermType = category ? {ownerid: userid, category} : {ownerid: userid}
+    const currentYear = new Date().getFullYear()
 
-    const files:IFile[] = await File.find(searchTerm)
+    const CategorySearchTerm:searchTermType = category ? {ownerid: userid, category: category.toString()} : {ownerid: userid}
+    const MonthSearchTerm = month ? {"createdAt": {"$gte": new Date(currentYear, parseInt(month.toString())-1, 1),"$lt": new Date(currentYear, parseInt(month.toString())-1, 31)}} : null
+
+
+    const SearchTerm = {
+        ...CategorySearchTerm,
+        ...MonthSearchTerm
+    }
+
+    const files:IFile[] = await File.find(SearchTerm)
 
     return res.status(200).send(files)
 }   
