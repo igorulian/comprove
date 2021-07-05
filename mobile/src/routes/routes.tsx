@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
-import Home from './pages/Home'
-import PerDate from './pages/PerDate';
-import PerCategory from './pages/PerCategory';
+import Home from '../pages/Home'
+import PerDate from '../pages/PerDate';
+import PerCategory from '../pages/PerCategory';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { GestureResponderEvent, TouchableOpacity, View } from 'react-native';
 

@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import React, { createContext, useEffect } from "react";
 import { useState } from "react";
-import { AuthRoutes } from "../auth.routes";
+import { AuthRoutes } from "../routes/auth.routes";
 import Loading from "../components/loading";
-import { TabRoutes } from "../routes";
+import { TabRoutes } from "../routes/routes";
 
 interface AuthContextData {
     signed: boolean,
