@@ -3,6 +3,7 @@ import { TouchableOpacity, View,Text, FlatList } from 'react-native';
 import { fileStyle } from './styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../Auth/styles';
+import { IFile } from '.';
 
 interface CatProps {
     name: string
@@ -17,26 +18,13 @@ const Category:React.FC<CatProps> = ({name}: CatProps) => {
     )
 }
 
+interface Props {
+    file: IFile
+}
 
-const File:React.FC = () => {
 
-    const categories = [
-        {
-            name: 'teste1'
-        },
-        {
-            name: 'teste2'
-        },
-        {
-            name: 'teste3'
-        },
-        {
-            name: 'teste4'
-        },
-        {
-            name: 'teste5'
-        },
-    ]
+const File:React.FC<Props> = ({file}: Props) => {
+    console.log(file) 
 
     return (
         <TouchableOpacity style={fileStyle.container}>
@@ -45,18 +33,14 @@ const File:React.FC = () => {
                 <View style={fileStyle.contentLeft}>
                     <MaterialCommunityIcons name="file-document" color={'#f78139'} size={40} />
                     <View style={fileStyle.info}>
-                        <Text> Titulo </Text>
+                        <Text> {file.originalname} </Text>
                         <Text style={fileStyle.datetxt}> 07/05/2020 </Text>
                     </View> 
                 </View>
 
-                <FlatList
-                    style={fileStyle.contentRight}
-                    keyExtractor={item => item.name}
-                    data={categories}
-                    numColumns={3}
-                    renderItem={({ item }) => { return ( <Category name={item.name}/> )}}
-                />
+                <View style={fileStyle.contentRight}>
+                    <Category name={file.category}/>
+                </View>
 
             </View>
         </TouchableOpacity>

@@ -86,7 +86,7 @@ const PerDateRoutes:React.FC = () => {
                 <Tab.Screen
                     key={month.number} 
                     name={month.initials}
-                    children={()=><PerDate month={month}/>}
+                    children={() => <PerDate month={month}/>}
                 />
             ))}
         </Tab.Navigator>

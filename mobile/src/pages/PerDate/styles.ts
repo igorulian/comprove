@@ -18,7 +18,8 @@ const fileStyle = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingLeft: 10
     },
     contentLeft:{
         alignItems: 'center',
@@ -43,8 +44,8 @@ const fileStyle = StyleSheet.create({
     },
     categoryContainer:{
         backgroundColor: '#0b465e',
-        width: 50,
-        height: 20,
+        width: 70,
+        height: 30,
         borderRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
@@ -52,7 +53,7 @@ const fileStyle = StyleSheet.create({
     },
     categoryText:{
         color: '#fff',
-        fontSize: 12
+        fontSize: 13
     }
 })
 
