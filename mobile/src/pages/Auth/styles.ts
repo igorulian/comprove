@@ -42,10 +42,8 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: '#e34133',
         margin: 10,
-        borderWidth: .3,
-        borderColor: '#c4c4c4',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -64,7 +62,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#24479b',
         margin: 10,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

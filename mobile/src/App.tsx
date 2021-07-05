@@ -12,7 +12,8 @@ const App:React.FC = () => {
 
   useEffect(() => {
     const checkToken = async() =>{
-      const token = await AsyncStorage.getItem('@token')
+      // const token = await AsyncStorage.getItem('@token')
+      const token = undefined
       const hasToken = token ? true : false
   
       setAuth(hasToken)
