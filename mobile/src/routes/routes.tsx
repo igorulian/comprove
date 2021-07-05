@@ -18,13 +18,13 @@ const UploadButton: React.FC|any = ({children, onPress}:ButtonTypes) => {
 
     return(
         <TouchableOpacity style={{
-            top: -30,
+            top: -20,
             justifyContent: 'center',
             alignItems: 'center',
-            width: 70,
-            height: 70,
+            width: 60,
+            height: 60,
             borderRadius: 35,
-            backgroundColor: '#f78139'
+            backgroundColor: '#0b465e'
         }}
         onPress={onPress}>
             {children}
@@ -40,7 +40,7 @@ export const TabRoutes = () => (
             component={PerDateRoutes}        
             options={{
                 tabBarLabel: 'Data',
-                tabBarIcon: ({color,focused}) => <MaterialCommunityIcons name="calendar-text" color={color} size={30} />
+                tabBarIcon: ({color}) => <MaterialCommunityIcons name="calendar-text" color={color} size={30} />
             }}  
         />  
                 

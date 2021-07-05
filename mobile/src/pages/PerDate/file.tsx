@@ -42,6 +42,8 @@ const File:React.FC<Props> = ({file}: Props) => {
                     <Category name={file.category}/>
                 </View>
 
+                <MaterialCommunityIcons name="chevron-right" color={'#333'} size={20} />
+
             </View>
         </TouchableOpacity>
     )

@@ -15,7 +15,7 @@ export interface IFile{
     originalname: string,
     mimetype: string,
     location: string,
-    category: string
+    category: string,
 }
 
 const PerDate:React.FC<Props> = ({month}: Props) =>{
