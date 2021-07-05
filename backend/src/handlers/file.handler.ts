@@ -25,6 +25,7 @@ async function handleList(req:Request, res:Response){
     const userid:string = req.userid
 
     const currentYear = new Date().getFullYear()
+    console.log(`Ano: ${currentYear}`)
 
     const CategorySearchTerm:searchTermType = category ? {ownerid: userid, category: category.toString()} : {ownerid: userid}
     const MonthSearchTerm = month ? {"createdAt": {"$gte": new Date(currentYear, parseInt(month.toString())-1, 1),"$lt": new Date(currentYear, parseInt(month.toString())-1, 31)}} : null
@@ -34,6 +35,7 @@ async function handleList(req:Request, res:Response){
         ...CategorySearchTerm,
         ...MonthSearchTerm
     }
+
 
     const files:IFile[] = await File.find(SearchTerm)
 
