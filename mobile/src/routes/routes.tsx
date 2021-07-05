@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
 import Home from '../pages/Home'
-import PerDate from '../pages/PerDate';
+import PerDateRoutes from '../routes/perdate.routes'
 import PerCategory from '../pages/PerCategory';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { GestureResponderEvent, TouchableOpacity, View } from 'react-native';
@@ -39,7 +39,7 @@ export const TabRoutes = () => (
     <Tab.Navigator initialRouteName="Home" tabBarOptions={{activeTintColor: '#f78139', showLabel: false}}>
         <Tab.Screen
             name="Data"
-            component={PerDate}        
+            component={PerDateRoutes}        
             options={{
                 tabBarLabel: 'Data',
                 tabBarIcon: ({color,focused}) => <MaterialCommunityIcons name="calendar-text" color={color} size={30} />

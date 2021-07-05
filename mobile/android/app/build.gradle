@@ -78,7 +78,7 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+    enableHermes: true,  // clean and rebuild if changing // colorquei true no dia 05/07 
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
