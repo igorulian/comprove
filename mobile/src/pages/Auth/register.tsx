@@ -7,14 +7,15 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
-import AsyncStorage from '@react-native-community/async-storage';
-import { AxiosResponse } from 'axios';
+import AuthContext from '../../context/auth';
+import { useContext } from 'react';
 
 export default function Register(){
     const [email,setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [password2, setPassword2] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
+    const {signIn} = useContext(AuthContext)
 
     const navigation = useNavigation();
 
@@ -54,8 +55,7 @@ export default function Register(){
         await api.post('/register', req)
         .then(async res => {
             const {token, email} = res.data
-            await AsyncStorage.setItem('@comprove:token', token)
-            await AsyncStorage.setItem('@comprove:email', email)
+            signIn(token,email)
 
         }).catch(error => {
             return Alert.alert('Ops!', error.response.data.error)

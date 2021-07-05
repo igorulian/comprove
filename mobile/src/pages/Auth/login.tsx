@@ -7,12 +7,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import BackButton from '../../components/backButton';
 import generalStyles from '../../generalStyles';
 import api from '../../services/api';
-import AsyncStorage from '@react-native-community/async-storage';
+import AuthContext from '../../context/auth';
 
 export default function Login(){
     const [email,setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
+    const {signIn} = useContext(AuthContext)
 
     function checkFields():boolean{
 
@@ -40,9 +41,8 @@ export default function Login(){
         await api.post('/login', req)
         .then(async res => {
             const {token, email} = res.data
-            await AsyncStorage.setItem('@comprove:token', token)
-            await AsyncStorage.setItem('@comprove:email', email)
-
+            signIn(token,email)
+            
         }).catch(error => {
             return Alert.alert('Ops!', error.response.data.error)
         })

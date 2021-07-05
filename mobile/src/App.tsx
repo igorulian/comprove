@@ -1,35 +1,22 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
-import { TabRoutes } from './routes';
-import { AuthRoutes } from './auth.routes';
-import { useState, useEffect, useContext} from 'react';
+import{ AuthProvider } from './context/auth';
+import { useEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import Loading from './components/loading'
 
 const App:React.FC = () => {
-  const [isLoading, setLoading] = useState(true)
-  const [isAuth, setAuth] = useState(false)
 
-  useEffect(() => {
-    const checkToken = async() =>{
-      const token = await AsyncStorage.getItem('@comprove:token')
-      const hasToken = token ? true : false
-  
-      setAuth(hasToken)
-      setLoading(false)
-    }
-
-    checkToken()
-  },[])
-
-  if(isLoading)
-    return <Loading/>
+  // useEffect(() => {
+  //   const resetStorage = async () => {
+  //     await AsyncStorage.setItem('@comprove:token', '')
+  //   }
+  //   // resetStorage()
+  // })
 
   return (
       <NavigationContainer>
-          {isAuth ? <TabRoutes/> : <AuthRoutes/>}
+        <AuthProvider/>
       </NavigationContainer>
-
   );
 };
 
