@@ -4,7 +4,7 @@ import PerDate from '../pages/PerDate';
 
 const Tab = createMaterialTopTabNavigator();
 
-interface IMonth {
+export interface IMonth {
     name:string,
     initials: string,
     number:number
@@ -79,10 +79,15 @@ const PerDateRoutes:React.FC = () => {
 
     const currentMonth:IMonth|undefined = months.find(mes => mes.number === currentMonthNumber)
 
+
     return (
         <Tab.Navigator initialRouteName={currentMonth?.initials} tabBarOptions={{scrollEnabled: true ,tabStyle:{width: 100}}}>
             {months.map(month => (
-                <Tab.Screen key={month.number} name={month.initials} component={PerDate} />
+                <Tab.Screen
+                    key={month.number} 
+                    name={month.initials}
+                    children={()=><PerDate month={month}/>}
+                />
             ))}
         </Tab.Navigator>
     )
