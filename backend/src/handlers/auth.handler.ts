@@ -41,7 +41,7 @@ async function handleRegister(req:Request, res:Response){
     const {email,password} = req.body
 
     if(!password || !email)
-    return res.status(400).send({error: 'Preencha todos os campos'}) 
+        return res.status(400).send({error: 'Preencha todos os campos'}) 
     
     if(await User.findOne({email}))
         return res.status(400).send({error: 'Usuário já existente'})
