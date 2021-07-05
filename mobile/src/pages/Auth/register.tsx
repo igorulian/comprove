@@ -23,15 +23,9 @@ export default function Register(){
     }
 
     function checkFields():boolean{
-        console.log(email,password,password2)
 
         if(!email || !password || !password2){
             Alert.alert('Ops!', 'Preencha todos os campos')
-            return false
-        }
-
-        if(!(email.includes('@'))){
-            Alert.alert('Ops!','Digite um email válido')
             return false
         }
 
@@ -64,7 +58,7 @@ export default function Register(){
             await AsyncStorage.setItem('@email', email)
 
         }).catch(error => {
-            return Alert.alert('Error', error.response.data.error)
+            return Alert.alert('Ops!', error.response.data.error)
         })
         
         setLoading(false)

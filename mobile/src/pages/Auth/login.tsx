@@ -1,15 +1,54 @@
 import React, { Component } from 'react';
 import { useState } from 'react';
-import { SafeAreaView,Text, TextInput, TouchableOpacity, View} from 'react-native';
+import { SafeAreaView,Text, TextInput, TouchableOpacity, View, ActivityIndicator, Alert} from 'react-native';
 import GeneralStyles from '../../generalStyles';
 import styles from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import BackButton from '../../components/backButton';
 import generalStyles from '../../generalStyles';
+import api from '../../services/api';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Login(){
     const [email,setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [loading, setLoading] = useState<boolean>(false)
+
+    function checkFields():boolean{
+
+        if(!email || !password){
+            Alert.alert('Ops!', 'Preencha todos os campos')
+            return false
+        }
+
+        if(!(email.includes('@'))){
+            Alert.alert('Ops!','Digite um email válido')
+            return false
+        }
+
+        return true
+    }
+    
+    async function handleLogin(){
+        if(!checkFields()) return
+        setLoading(true)
+        const req = {
+            email,
+            password
+        }
+
+        await api.post('/login', req)
+        .then(async res => {
+            const {token, email} = res.data
+            await AsyncStorage.setItem('@token', token)
+            await AsyncStorage.setItem('@email', email)
+
+        }).catch(error => {
+            return Alert.alert('Ops!', error.response.data.error)
+        })
+        
+        setLoading(false)
+    }
     
 
     return (
@@ -40,8 +79,8 @@ export default function Login(){
                     />
                 </View>
                 
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttontext}> ENTRE </Text>
+                <TouchableOpacity style={styles.button} onPress={() => {handleLogin()}}>
+                <Text style={styles.buttontext}> {loading ? <ActivityIndicator  size="small" color="#fff"/> : 'ENTRAR'} </Text>
                 </TouchableOpacity>
 
             </View>
