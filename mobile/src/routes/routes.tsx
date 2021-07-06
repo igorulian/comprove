@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
 import Home from '../pages/Home'
-import PerDateRoutes from '../routes/perdate.routes'
+import PerDateRoutes from './perdate.routes'
 import PerCategory from '../pages/PerCategory';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { GestureResponderEvent, TouchableOpacity, View } from 'react-native';
+import PerDateRoutesList from './perdate.list.routes';
 
 const Tab = createBottomTabNavigator()
 

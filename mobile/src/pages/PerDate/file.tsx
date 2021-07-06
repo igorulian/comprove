@@ -2,8 +2,8 @@ import React from 'react';
 import { TouchableOpacity, View,Text, FlatList } from 'react-native';
 import { fileStyle } from './styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import styles from '../Auth/styles';
 import { IFile } from '.';
+import { useNavigation } from '@react-navigation/native';
 
 interface CatProps {
     name: string,
@@ -25,6 +25,11 @@ interface Props {
 
 
 const File:React.FC<Props> = ({file}: Props) => {
+    const navigation = useNavigation()
+
+    function showFile(){
+        navigation.navigate('show', {file: file})
+    }
 
     function fixNumber(n:number){
         return (n < 10) ? '0' + n.toString() : n.toString();
@@ -36,7 +41,7 @@ const File:React.FC<Props> = ({file}: Props) => {
     const fyear:string = fixNumber(fdate.getFullYear())
 
     return (
-        <TouchableOpacity style={fileStyle.container}>
+        <TouchableOpacity style={fileStyle.container} onPress={() => {showFile()}}>
             <View style={fileStyle.content}>
 
                 <View style={fileStyle.contentLeft}>

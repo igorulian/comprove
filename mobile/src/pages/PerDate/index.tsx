@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { Alert, FlatList, ListRenderItem, SafeAreaView, Text } from 'react-native'
 import Loading from '../../components/loading'
 import AuthContext from '../../context/auth'
-import { IMonth } from '../../routes/perdate.routes'
+import { IMonth } from '../../routes/perdate.list.routes'
 import api, {authorizaton} from '../../services/api'
 import File from './file'
 
