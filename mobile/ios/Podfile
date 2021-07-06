@@ -12,6 +12,10 @@ target 'mobile' do
     :hermes_enabled => false
   )
 
+  pod 'RNPDF', :path => '../node_modules/react-native-view-pdf'
+
+  pod 'react-native-progress-bar-android', :path => '../node_modules/@react-native-community/progress-bar-android'
+
   target 'mobileTests' do
     inherit! :complete
     # Pods for testing

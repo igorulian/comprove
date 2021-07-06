@@ -10,7 +10,7 @@ const BackButton:React.FC = () =>{
     const navigation = useNavigation();
     return(
         <TouchableOpacity style={styles.container} onPress={() => {navigation.goBack()}}>
-            <MaterialCommunityIcons name="arrow-left" color={'#f78139'} size={30} />
+            <MaterialCommunityIcons name="arrow-left" color={'#0b465e'} size={30} />
         </TouchableOpacity>
     )
 }

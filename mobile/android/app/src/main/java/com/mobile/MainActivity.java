@@ -1,6 +1,7 @@
 package com.mobile;
 
 import com.facebook.react.ReactActivity;
+import com.reactnativecommunity.androidprogressbar.RNCProgressBarPackage; // pdf
 
 public class MainActivity extends ReactActivity {
 

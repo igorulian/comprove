@@ -9,11 +9,9 @@ const styles = StyleSheet.create({
     },
     fileContainer:{
         flex: 1,
-        borderColor: '#333',
-        borderWidth: .2,
         marginTop: 70,
         marginBottom: 120,
-        width: '100%'
+        width: '80%'
     },
     fileContent:{
         flex: 1
