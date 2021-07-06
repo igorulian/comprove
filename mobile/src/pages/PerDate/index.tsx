@@ -3,7 +3,7 @@ import React from 'react'
 import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { FlatList, ListRenderItem, SafeAreaView, Text } from 'react-native'
+import { Alert, FlatList, ListRenderItem, SafeAreaView, Text } from 'react-native'
 import Loading from '../../components/loading'
 import AuthContext from '../../context/auth'
 import { IMonth } from '../../routes/perdate.routes'
@@ -16,6 +16,7 @@ interface Props {
 
 export interface IFile{
     _id: string,
+    title: string,
     originalname: string,
     mimetype: string,
     location: string,
@@ -33,7 +34,6 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
           setFocus(true)
-          console.log(`Focado: ${month.name}`)
         });
         return unsubscribe;
       }, [navigation]);
@@ -45,6 +45,7 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
             await api.get(`/list?month=${month?.number}`, authorizaton(token)).then(response => {
                 setFiles(response.data)
             }).catch(error => {
+                Alert.alert('Ops!', error.response.data.error)
                 console.log(error.response.data.error)
             })
             setLoading(false)
@@ -59,6 +60,14 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
 
     if(loading)
         return <Loading/>
+
+    if(files.length <= 0){
+        return (
+        <SafeAreaView>
+            <Text> Você ainda não possui nenhum comprovante esse mês</Text>
+        </SafeAreaView>
+        )
+    }
     
 
     return(
