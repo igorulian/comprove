@@ -26,7 +26,7 @@ export const AuthProvider:React.FC = ({children}) => {
         const checkToken = async() =>{
           const storageToken = await AsyncStorage.getItem('@comprove:token')
           const storageEmail = await AsyncStorage.getItem('@comprove:email')
-          const hasToken = (token === null) ? true : false
+          const hasToken = storageToken ? true : false
       
           setSigned(hasToken)
           setToken(storageToken)
