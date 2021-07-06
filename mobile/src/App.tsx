@@ -8,9 +8,13 @@ const App:React.FC = () => {
 
   // useEffect(() => {
   //   const resetStorage = async () => {
-  //     await AsyncStorage.setItem('@comprove:token', '')
+  //     console.log('resetanuuuuuuuuuuuuuuuuuuuuu')
+  //     await AsyncStorage.removeItem('@comprove:token')
+  //     await AsyncStorage.removeItem('@comprove:email')
+  //     console.log(await AsyncStorage.getItem('@comprove:token'))
+  //     console.log(await AsyncStorage.getItem('@comprove:email'))
   //   }
-  //   // resetStorage()
+  //   resetStorage()
   // })
 
   return (

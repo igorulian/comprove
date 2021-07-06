@@ -24,8 +24,7 @@ interface Props {
 
 
 const File:React.FC<Props> = ({file}: Props) => {
-    console.log(file) 
-
+    
     return (
         <TouchableOpacity style={fileStyle.container}>
             <View style={fileStyle.content}>
