@@ -1,6 +1,6 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { SafeAreaView,Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { SafeAreaView,Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import BackButton from '../../components/backButton';
 import { IFile } from '../PerDate';
 import {styles} from './styles'
@@ -16,15 +16,33 @@ type IParams = {
     };
 }
 
+interface ISelectableCategory {
+    name: string,
+    color: string
+}
+
 const ShowFile:React.FC = () => {
     const route = useRoute<RouteProp <IParams, 'Props'>>();
     const file = route.params.file
     const fileSource = {uri:file.location};
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] = useState(false)
     const fileDate = new Date(file.createdAt)
+
+    console.log(fileDate)
 
     const [category,setCategory] = useState(file.category)
     const [date, setDate] = useState(fileDate)
+
+    function updateFile(){
+        setLoading(true)
+    }
+
+    const SelectableCategory:React.FC<ISelectableCategory> = ({name,color}:ISelectableCategory) => (
+        <TouchableOpacity onPress={() => {setCategory(name)}}>
+            <Category name={name} color={category === name ? color : '#ccc'}/>
+        </TouchableOpacity>
+    )
+
 
     return (
         <ScrollView>
@@ -44,9 +62,6 @@ const ShowFile:React.FC = () => {
                 :
                 <Pdf
                     source={fileSource}
-                    onLoadComplete={(numberOfPages,filePath)=>{
-                        console.log(`number of pages: ${numberOfPages}`);
-                    }}
                     onLoadProgress={(percent) => {
                         if(percent >= 1)
                             setLoading(false)
@@ -65,15 +80,15 @@ const ShowFile:React.FC = () => {
                 <Text style={styles.fileInfoText}> Categoria:</Text>
                 
                 <View style={styles.categoryContainer}>
-                    <Category name='Categoria' color='#f78139'/>
-                    <Category name='Categoria' color='#ccc'/>
-                    <Category name='Categoria' color='#ccc'/>
-                    <Category name='Categoria' color='#ccc'/>
+                    <SelectableCategory name='Categoria1' color='#f78139'/>
+                    <SelectableCategory name='Categoria2' color='#f78139'/>
+                    <SelectableCategory name='Categoria3' color='#f78139'/>
+                    <SelectableCategory name='Categoria4' color='#f78139'/>
                 </View>
                 <View style={styles.categoryContainer}>
-                    <Category name='Categoria' color='#ccc'/>
-                    <Category name='Categoria' color='#ccc'/>
-                    <Category name='Categoria' color='#ccc'/>
+                    <SelectableCategory name='Categoria5' color='#f78139'/>
+                    <SelectableCategory name='Categoria6' color='#f78139'/>
+                    <SelectableCategory name='Categoria7' color='#f78139'/>
                 </View>
 
                 <Text style={styles.fileInfoText}> Data:</Text>
@@ -85,11 +100,17 @@ const ShowFile:React.FC = () => {
                     androidVariant={'nativeAndroid'}
                     locale={'pt_BR'}
                     mode={'date'}
+                    maximumDate={new Date(`${fileDate.getFullYear()}-12-31`)}
+                    minimumDate={new Date(`${fileDate.getFullYear()}-1-1`)}
                 />
             </View>
 
-            <TouchableOpacity style={styles.btnSave}>
-                <Text style={styles.btnSaveText}> SALVAR </Text>
+            <TouchableOpacity style={styles.btnSave} onPress={() =>{updateFile()}}>
+                {!loading ? 
+                    <Text style={styles.btnSaveText}> SALVAR </Text>
+                :
+                    <ActivityIndicator size='small' color='#fff'/>
+                }
             </TouchableOpacity>
         </ScrollView>
     )

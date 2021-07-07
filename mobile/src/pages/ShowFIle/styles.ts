@@ -25,7 +25,13 @@ const styles = StyleSheet.create({
         right: 0,
         zIndex: 10,
         marginRight: -12,
-        marginTop: -12
+        marginTop: -12,
+        // width: 50,
+        // height: 50,
+        // backgroundColor: '#FAFAFA',
+        // borderRadius: 50,
+        // alignItems: 'center',
+        // justifyContent: 'center'
     },
     btnSave:{
         backgroundColor: '#0b465e',
