@@ -11,6 +11,7 @@ routes.post('/upload',multer(multerConfig).single('file'), controller.uploadRece
 routes.get('/list', controller.listReceipts)
 routes.get('/show/:id', controller.showReceipt)
 routes.post('/remove/:id', controller.removeReceipt)
+routes.post('/edit/:id', controller.editReceipt)
 
 
 export default routes

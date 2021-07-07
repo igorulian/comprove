@@ -79,5 +79,24 @@ async function handleRemove(req:Request, res:Response){
     return res.status(200).send()
 } 
 
+async function handleEdit(req:Request, res:Response){
+    const userid:string = req.userid
+    const fileid = req.params.id
+    const file = await File.findById(fileid)
+    const editedFile = req.body
 
-export {handleList, handleUpload,handleRemove}
+    if(!file)
+        return res.status(400).send({error: 'File not found'})
+
+    if(file.ownerid !== userid)
+        return res.status(400).send({error: 'Invalid user'})
+
+    await file.update({
+        ...editedFile
+    }, )
+
+    return res.status(200).send({sent: editedFile})
+} 
+
+
+export {handleList, handleUpload,handleRemove, handleEdit}
