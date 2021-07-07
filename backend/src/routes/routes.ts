@@ -1,4 +1,4 @@
-import { Request, Response, Router } from 'express'
+import {Router} from 'express'
 import controller from '../controllers/file.controller'
 import {authMiddleware} from '../middlewares/auth.middleware'
 import multer from 'multer'
@@ -10,7 +10,7 @@ routes.use(authMiddleware)
 routes.post('/upload',multer(multerConfig).single('file'), controller.uploadReceipt)
 routes.get('/list', controller.listReceipts)
 routes.get('/show/:id', controller.showReceipt)
-routes.post('/remove/:id', controller.removeReceipt)
+routes.delete('/remove/:id', controller.removeReceipt)
 routes.post('/edit/:id', controller.editReceipt)
 
 

@@ -1,12 +1,30 @@
 import { Document, Schema, model } from 'mongoose'
 import bcrypt from 'bcryptjs'
 
+export interface ICategory {
+    name: string;
+    color: string;
+}
+
+export const categorySchema:Schema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    color: {
+        type: String,
+        required: true,
+        default: '#ccc'
+    }
+})
+
 export interface IUser extends Document {
     email: string;
     avatarUrl: string;
     password: string;
     createdAt: Date;
-    categories: string[];
+    categories: ICategory[];
 }
 
 export const userSchema:Schema = new Schema({
@@ -23,7 +41,7 @@ export const userSchema:Schema = new Schema({
         default: ''
     },
     categories:{
-        type: [String],
+        type: [categorySchema],
         default: []
     },
     password:{
