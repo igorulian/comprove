@@ -12,8 +12,8 @@ interface ICategory {
 }
 
 interface IUser {
-    avatarUrl: string,
-    _id: string,
+    avatarUrl: string|undefined,
+    _id: string|undefined,
     categories: ICategory[]
 }
 
@@ -65,6 +65,16 @@ export const AuthProvider:React.FC = ({children}) => {
         setUser(null)
         await AsyncStorage.removeItem('@comprove:token')
         await AsyncStorage.removeItem('@comprove:user')
+    }
+
+    async function updateUserCategories(categories:ICategory[]){
+        const newCategories:ICategory[] = categories
+        const updatedUser:IUser = {
+            avatarUrl: user?.avatarUrl,
+            _id: user?._id,
+            categories: newCategories
+        }
+        await AsyncStorage.setItem('@comprove:user', JSON.stringify(updatedUser))
     }
 
     if(loading)
