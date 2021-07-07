@@ -19,11 +19,11 @@ async function handleCreate(req:Request, res:Response){
     if(hasCategory)
         return res.status(400).send({error: 'Categoria ja existente'})
 
-    await user.update({
+    const updatedUser:IUser = await User.findByIdAndUpdate(userid,{
         $push: { categories: newCategory }
-    })
+    },{new: true})
 
-    return res.status(200).send()
+    return res.status(200).send(updatedUser.categories)
 }   
 
 async function handleRemove(req:Request, res:Response){
