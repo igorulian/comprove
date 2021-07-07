@@ -32,4 +32,11 @@ async function handleRemove(req:Request, res:Response){
     return res.status(200).send()
 } 
 
-export {handleCreate, handleRemove}
+async function handleList(req:Request, res:Response){
+    const userid:string = req.userid
+    const user = await User.findById(userid)
+
+    return res.status(200).send(user.categories)
+} 
+
+export {handleCreate, handleRemove,handleList}
