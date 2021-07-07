@@ -10,6 +10,7 @@ routes.use(authMiddleware)
 routes.post('/upload',multer(multerConfig).single('file'), controller.uploadReceipt)
 routes.get('/list', controller.listReceipts)
 routes.get('/show/:id', controller.showReceipt)
+routes.post('/remove/:id', controller.removeReceipt)
 
 
 export default routes

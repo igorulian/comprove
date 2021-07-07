@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { handleUpload, handleList } from "../handlers/file.handler"
+import { handleUpload, handleList, handleRemove } from "../handlers/file.handler"
 
 export = {
     async uploadReceipt(req:Request, res:Response){
@@ -22,5 +22,12 @@ export = {
         }catch {
             return res.status(400).send({error: 'Erro ao mostrar arquivo'})
         }
-    }
+    },    
+    async removeReceipt(req:Request, res:Response){ // fazer isso
+        try{
+            return await handleRemove(req,res)
+        }catch{
+            return res.status(400).send({error: 'Erro ao remover arquivos'})
+         }
+    },
 }

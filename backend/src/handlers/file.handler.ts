@@ -25,7 +25,6 @@ async function handleList(req:Request, res:Response){
     const userid:string = req.userid
 
     const currentYear = new Date().getFullYear()
-    console.log(`Ano: ${currentYear}`)
 
     const CategorySearchTerm:searchTermType = category ? {ownerid: userid, category: category.toString()} : {ownerid: userid}
     const MonthSearchTerm = month ? {"createdAt": {"$gte": new Date(currentYear, parseInt(month.toString())-1, 1),"$lt": new Date(currentYear, parseInt(month.toString())-1, 31)}} : null
@@ -62,6 +61,23 @@ async function handleUpload(req:Request, res:Response){
     const newFile:IFile = await File.create(newFileData)
 
     return res.status(200).send(newFile)
-}   
+} 
 
-export {handleList, handleUpload}
+async function handleRemove(req:Request, res:Response){
+    const userid:string = req.userid
+    const fileid = req.params.id
+    const file = await File.findById(fileid)
+
+    if(!file)
+        return res.status(400).send({error: 'File not found'})
+
+    if(file.ownerid !== userid)
+        return res.status(400).send({error: 'Invalid user'})
+
+    await file.delete()
+
+    return res.status(200).send()
+} 
+
+
+export {handleList, handleUpload,handleRemove}
