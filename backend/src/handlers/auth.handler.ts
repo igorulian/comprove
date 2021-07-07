@@ -49,7 +49,7 @@ async function handleRegister(req:Request, res:Response){
     const newUser:IUser = await User.create({email, password})
 
     const response = {
-        newUser,
+        user: newUser,
         token: generateToken({id: newUser._id})
     }
 
