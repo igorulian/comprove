@@ -30,7 +30,7 @@ async function handleLogin(req:Request, res:Response){
     user.password = undefined
 
     const response = {
-        email,
+        user,
         token: generateToken({id: user._id})
     }
     return res.status(200).send(response)
@@ -49,7 +49,7 @@ async function handleRegister(req:Request, res:Response){
     const newUser:IUser = await User.create({email, password})
 
     const response = {
-        email: newUser.email,
+        newUser,
         token: generateToken({id: newUser._id})
     }
 
