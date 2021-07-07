@@ -28,8 +28,6 @@ const ShowFile:React.FC = () => {
     const [loading,setLoading] = useState(false)
     const fileDate = new Date(file.createdAt)
 
-    console.log(fileDate)
-
     const [category,setCategory] = useState(file.category)
     const [date, setDate] = useState(fileDate)
 
@@ -50,7 +48,7 @@ const ShowFile:React.FC = () => {
             <View style={styles.fileContainer}>
 
                 <TouchableOpacity style={styles.shareButton}>
-                    <MaterialCommunityIcons name="share-circle" color={'#f78139'} size={50} />
+                    <MaterialCommunityIcons name="share-circle" color={'#f78139'} size={50}/>
                 </TouchableOpacity>
 
                 {file.mimetype.includes('image') ? 

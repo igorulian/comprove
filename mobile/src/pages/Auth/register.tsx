@@ -54,8 +54,8 @@ export default function Register(){
 
         await api.post('/register', req)
         .then(async res => {
-            const {token, email} = res.data
-            signIn(token,email)
+            const {token,user} = res.data
+            signIn(token,user)
 
         }).catch(error => {
             return Alert.alert('Ops!', error.response.data.error)
