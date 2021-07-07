@@ -44,7 +44,7 @@ const fileStyle = StyleSheet.create({
     },
     categoryContainer:{
         backgroundColor: '#0b465e',
-        width: 60,
+        width: 70,
         height: 25,
         borderRadius: 30,
         justifyContent: 'center',

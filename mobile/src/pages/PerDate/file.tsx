@@ -10,7 +10,7 @@ interface CatProps {
     color: string
 }
 
-const Category:React.FC<CatProps> = ({name,color}: CatProps) => {
+export const Category:React.FC<CatProps> = ({name,color}: CatProps) => {
     return (
         <View style={{...fileStyle.categoryContainer, backgroundColor: color}}>
             <Text style={fileStyle.categoryText}> {name} </Text>
