@@ -34,25 +34,19 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
           setFocus(true)
+          requestFiles()
         });
         return unsubscribe;
       }, [navigation]);
 
-    useEffect(() => {
-        if(!focus) return
-
-        const requestFiles = async () => {
-            await api.get(`/list?month=${month?.number}`, authorizaton(token)).then(response => {
-                setFiles(response.data)
-            }).catch(error => {
-                Alert.alert('Ops!', error.response.data.error)
-                console.log(error.response.data.error)
-            })
-            setLoading(false)
-        }
-        requestFiles()
-
-    },[focus])
+    const requestFiles = async () => {
+        await api.get(`/list?month=${month?.number}`, authorizaton(token)).then(response => {
+            setFiles(response.data)
+        }).catch(error => {
+            Alert.alert('Ops!', error.response.data.error)
+        })
+        setLoading(false)
+    }
 
 
     if(!focus)

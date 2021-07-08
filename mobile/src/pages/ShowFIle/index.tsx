@@ -1,4 +1,4 @@
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaView,Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import BackButton from '../../components/backButton';
@@ -34,6 +34,7 @@ const ShowFile:React.FC = () => {
     const [category,setCategory] = useState(file.category)
     const [date, setDate] = useState(fileDate)
     const {user,token} = useContext<AuthContextData>(AuthContext)
+    const navigation = useNavigation()
 
     const categories:ICategory[]|undefined = user?.categories
 
@@ -44,11 +45,10 @@ const ShowFile:React.FC = () => {
             category,
         }   
 
-        console.log(req)
-
         await api.post(`/edit/${file._id}`, req ,authorizaton(token))
         .then((response) => {
             Alert.alert('Sucesso!', 'Arquivo atualizado com sucesso!')
+            navigation.goBack()
         }).catch((error) => {
             Alert.alert('Ops!', `${error.response.data.error}`)
         })

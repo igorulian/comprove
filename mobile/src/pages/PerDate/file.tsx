@@ -36,7 +36,7 @@ const File:React.FC<Props> = ({file}: Props) => {
     }
 
     const fdate = new Date(file.createdAt)
-    const fday:string = fixNumber(fdate.getDay())
+    const fday:string = fixNumber(fdate.getDate())
     const fmonth:string = fixNumber(fdate.getMonth() + 1)
     const fyear:string = fixNumber(fdate.getFullYear())
 
