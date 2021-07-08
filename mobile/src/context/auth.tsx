@@ -23,7 +23,8 @@ export interface AuthContextData {
     user: IUser|null,
     loading: boolean,
     signIn(token:string, user:IUser): void,
-    signOut(): void
+    signOut(): void,
+    updateUserCategories(categories:ICategory[]):Promise<void>,
 }
 
 const AuthContext = createContext<AuthContextData>({ } as AuthContextData)
@@ -75,13 +76,14 @@ export const AuthProvider:React.FC = ({children}) => {
             categories: newCategories
         }
         await AsyncStorage.setItem('@comprove:user', JSON.stringify(updatedUser))
+        setUser(updatedUser)
     }
 
     if(loading)
         return <Loading/>
 
     return (
-        <AuthContext.Provider value={{signed, token, loading, user, signIn, signOut}}>
+        <AuthContext.Provider value={{signed, token, loading, user, signIn, signOut, updateUserCategories}}>
             {children}
             {signed ? <TabRoutes/> : <AuthRoutes/>}
         </AuthContext.Provider>

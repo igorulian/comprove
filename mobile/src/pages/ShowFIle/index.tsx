@@ -99,7 +99,12 @@ const ShowFile:React.FC = () => {
                 <Text style={styles.fileInfoText}> Categoria:</Text>
                 
                 <View style={styles.categoryContainer}>
-                    <ScrollView horizontal style={styles.categoryScrollView}>
+                    <ScrollView 
+                        horizontal 
+                        style={styles.categoryScrollView}
+                        showsVerticalScrollIndicator={false}
+                        showsHorizontalScrollIndicator={false}
+                        >
                         {
                             categories?.map(category => (
                                 <SelectableCategory key={category._id} name={category.name} color={category.color}/>

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     addButton:{
-        backgroundColor: '#009124',
+        backgroundColor: '#0b465e',
         height: 45,
         width: 110,
         marginBottom: 30,

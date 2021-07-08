@@ -1,31 +1,35 @@
 import React from 'react';
-import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import AuthContext, { ICategory } from '../../context/auth';
 import styles from './styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import api, { authorizaton } from '../../services/api';
 import { useContext } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { cos } from 'react-native-reanimated';
+import { useState } from 'react';
 
 interface Props {
     category: ICategory
 }
 
-async function removeCategory(category:ICategory, token:string|null){
-
-    await api.post(`/category/remove/${category.name}`,{},authorizaton(token))
-    .then(() => {
-        Alert.alert('Sucesso!', 'Categoria removida com sucesso')
-    })
-    .catch((error) => { 
-        Alert.alert('Ops!', `${error.response.data.error}`)
-    })
-}
 
 
 const Category:React.FC<Props> = ({category}: Props) => {
-    const {token} = useContext(AuthContext)
+    const {token, updateUserCategories} = useContext(AuthContext)
+    const [removeLoading, setRemoveLoading] = useState(false)
+
+    async function removeCategory(){
+        setRemoveLoading(true)
+        await api.post(`/category/remove/${category.name}`,{},authorizaton(token))
+        .then(async (response) => {
+            const UpdatedCategories:ICategory[] = response.data
+            await updateUserCategories(UpdatedCategories)
+            setRemoveLoading(false)
+        })
+        .catch((error) => { 
+            Alert.alert('Ops!', `${error.response.data.error}`)
+            setRemoveLoading(false)
+        })
+    }
 
     return (
         <View style={styles.categoryContainer}>
@@ -37,8 +41,8 @@ const Category:React.FC<Props> = ({category}: Props) => {
                 <TouchableOpacity>    
                     <MaterialCommunityIcons name="pencil" color={'#0b465e'} size={30}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {removeCategory(category,token)} }>    
-                    <MaterialCommunityIcons name="close" color={'#ff0000'} size={30}/>
+                <TouchableOpacity onPress={() => {removeCategory()} }>    
+                {removeLoading ? <ActivityIndicator size={30} color={'#ff0000'}/> : <MaterialCommunityIcons name="close" color={'#ff0000'} size={30}/>}
                 </TouchableOpacity>
             </View>
         </View>
