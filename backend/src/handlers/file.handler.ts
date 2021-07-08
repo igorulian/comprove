@@ -83,7 +83,7 @@ async function handleEdit(req:Request, res:Response){
     const userid:string = req.userid
     const fileid = req.params.id
     const file = await File.findById(fileid)
-    const editedFile = req.body
+    const editedData = req.body
 
     if(!file)
         return res.status(400).send({error: 'File not found'})
@@ -91,11 +91,11 @@ async function handleEdit(req:Request, res:Response){
     if(file.ownerid !== userid)
         return res.status(400).send({error: 'Invalid user'})
 
-    await file.update({
-        ...editedFile
-    }, )
+    const editedFile = await File.findByIdAndUpdate(fileid,{
+        ...editedData
+    }, {new: true})
 
-    return res.status(200).send({sent: editedFile})
+    return res.status(200).send(editedFile)
 } 
 
 
