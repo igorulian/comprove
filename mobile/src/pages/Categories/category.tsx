@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import api, { authorizaton } from '../../services/api';
 import { useContext } from 'react';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
     category: ICategory
@@ -16,6 +17,7 @@ interface Props {
 const Category:React.FC<Props> = ({category}: Props) => {
     const {token, updateUserCategories} = useContext(AuthContext)
     const [removeLoading, setRemoveLoading] = useState(false)
+    const navigation = useNavigation()
 
     async function removeCategory(){
         setRemoveLoading(true)
@@ -31,6 +33,10 @@ const Category:React.FC<Props> = ({category}: Props) => {
         })
     }
 
+    async function editCategory() {
+        navigation.navigate('edit', {category: category})
+    }
+
     return (
         <View style={styles.categoryContainer}>
             <View style={styles.categoryInfo}>
@@ -38,7 +44,7 @@ const Category:React.FC<Props> = ({category}: Props) => {
                 <Text style={styles.categoryName}> {`${category.name}`}</Text>
             </View>
             <View style={styles.categoryButtons}>
-                <TouchableOpacity>    
+                <TouchableOpacity onPress={() => {editCategory()}}>    
                     <MaterialCommunityIcons name="pencil" color={'#0b465e'} size={30}/>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {removeCategory()} }>    

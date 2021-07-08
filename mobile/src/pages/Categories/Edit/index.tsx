@@ -1,19 +1,25 @@
 import React from 'react';
 import { useState } from 'react';
 import { SafeAreaView, Text, View, TextInput, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
-import styles from './styles'
+import styles from '../Add/styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Alert } from 'react-native';
 import { useContext } from 'react';
 import AuthContext, { ICategory } from '../../../context/auth';
 import api, { authorizaton } from '../../../services/api';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import {colors, colors2} from '../colors'
 
 interface ColorProps {
     color: string,
     selectedColor: string,
     setSelectedColor(color:string): void
+}
+
+type IParams = {
+    Props: {
+        category: ICategory;
+    };
 }
 
 
@@ -36,9 +42,13 @@ const Color:React.FC<ColorProps> = ({color,selectedColor,setSelectedColor}:Color
 
 }
 
-const AddCategory:React.FC = () => {
-    const [selectedColor, setSelectedColor] = useState<string>(colors[0])
-    const [name, setName] = useState<string>('')
+
+const EditCategory:React.FC = () => {
+    const route = useRoute<RouteProp <IParams, 'Props'>>();
+    const category = route.params.category
+
+    const [selectedColor, setSelectedColor] = useState<string>(category.color)
+    const [name, setName] = useState<string>(category.name)
     const [loading, setLoading] = useState<boolean>(false)
     const {token, updateUserCategories} = useContext(AuthContext)
     const navigation = useNavigation()
@@ -48,13 +58,13 @@ const AddCategory:React.FC = () => {
         navigation.goBack()
     }
 
-    async function handleCreateRequest(){
+    async function handleEditRequest(){
         setLoading(true)
         const request = {
             name,
             color: selectedColor
         }
-        await api.post('/category/add',request,authorizaton(token))
+        await api.post(`/category/edit/${category.name}`,request,authorizaton(token))
         .then(async (response) => {
 
             const updatedCategories:ICategory[] = response.data
@@ -69,14 +79,14 @@ const AddCategory:React.FC = () => {
         })  
     }
 
-    function createCategory(){
+    function editCategory(){
         if(!name || ! selectedColor)
             return Alert.alert('Ops!', 'Preencha todos os campos')
         
         if(!selectedColor.includes('#'))
             return Alert.alert('Ops!', 'Ocorreu um erro na criação da categoria')
 
-        handleCreateRequest()
+        handleEditRequest()
     }
 
     return (
@@ -86,6 +96,7 @@ const AddCategory:React.FC = () => {
                 <Text style={styles.inputname}> Nome: </Text>
                 <TextInput
                 style={styles.input}
+                value={category.name}
                 placeholder='Digite o nome da categoria'
                 onChangeText={(txt:string) => {setName(txt)}}
                 />
@@ -130,9 +141,9 @@ const AddCategory:React.FC = () => {
                 />
             </View>
 
-            <TouchableOpacity style={styles.btnCriar} onPress={() => {createCategory()}}>
+            <TouchableOpacity style={styles.btnCriar} onPress={() => {editCategory()}}>
                 <Text style={styles.btnCriarTxt}> 
-                {loading ? <ActivityIndicator size={'small'} color='#fff'/> : 'CRIAR'} 
+                {loading ? <ActivityIndicator size={'small'} color='#fff'/> : 'SALVAR'} 
                 </Text>
             </TouchableOpacity>
         </SafeAreaView>
@@ -140,4 +151,4 @@ const AddCategory:React.FC = () => {
     )
 }
 
-export default AddCategory
+export default EditCategory
