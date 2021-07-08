@@ -1,4 +1,4 @@
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { NavigationProp, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaView,Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator, Alert, FlatList } from 'react-native';
 import BackButton from '../../components/backButton';
@@ -10,7 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Category } from '../PerDate/file';
 import DatePicker from 'react-native-date-picker'
 import { useContext } from 'react';
-import AuthContext, { AuthContextData, ICategory, IUser } from '../../context/auth';
+import AuthContext, { AuthContextData, ICategory } from '../../context/auth';
 import api, { authorizaton } from '../../services/api';
 
 type IParams = {
@@ -22,6 +22,50 @@ type IParams = {
 interface ISelectableCategory {
     name: string,
     color: string
+}
+
+interface IRemoveBtnProps {
+    file: IFile,
+    token: string|null,
+    goBack: Function
+}
+
+
+async function removeRequest(file:IFile, token:string|null, goBack:Function){
+
+    await api.delete(`/remove/${file._id}`, authorizaton(token))
+    .then(() => {
+        Alert.alert('Sucesso', 'Arquivo removido com sucesso')
+        goBack()
+    })
+    .catch((error) => {
+        Alert.alert('Ops!', error.response.data.error )
+    })  
+}
+
+async function removeFile(file:IFile, token:string|null, goBack:Function) {
+    
+    Alert.alert("Confirmação","Deseja remover o arquivo?",
+    [{
+        text: "Cancelar",
+        style: "cancel",
+    },
+    {
+        text: "Remover",
+        style: "default",
+        onPress: async () =>  { 
+            await removeRequest(file,token,goBack)
+        }
+    }]
+    ,{ cancelable: true })
+}
+
+const RemoveButton:React.FC<IRemoveBtnProps> = ({file,token,goBack}:IRemoveBtnProps) => {
+    return(
+        <TouchableOpacity style={styles.closeButton} onPress={() => {removeFile(file,token,goBack)}}>
+            <MaterialCommunityIcons name='close' size={30} color={'#ff0000'}/>
+        </TouchableOpacity>
+    )
 }
 
 const ShowFile:React.FC = () => {
@@ -65,6 +109,7 @@ const ShowFile:React.FC = () => {
     return (
         <ScrollView>
             <BackButton/>
+            <RemoveButton file={file} token={token} goBack={() => {navigation.goBack()}}/>
             <View style={styles.fileContainer}>
 
                 <TouchableOpacity style={styles.shareButton}>
@@ -103,7 +148,7 @@ const ShowFile:React.FC = () => {
                         style={styles.categoryScrollView}
                         showsVerticalScrollIndicator={false}
                         showsHorizontalScrollIndicator={false}
-                        >
+                    >
                         {
                             categories?.map(category => (
                                 <SelectableCategory key={category._id} name={category.name} color={category.color}/>

@@ -65,6 +65,12 @@ const styles = StyleSheet.create({
         height: 120,
         marginLeft: 5,
         alignSelf: 'center'
+    },
+    closeButton:{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        margin: 20
     }
 })
 

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TouchableOpacity, View,Text, FlatList } from 'react-native';
+import { TouchableOpacity, View,Text, FlatList, Alert } from 'react-native';
 import { fileStyle } from './styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { IFile } from '.';

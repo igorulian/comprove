@@ -77,8 +77,6 @@ const AddCategory:React.FC = () => {
             const updatedCategories:ICategory[] = response.data
             await updateUserCategories(updatedCategories)
 
-            Alert.alert('Sucesso!', 'Categoria criada com sucesso!')
-
             goToCategoriesList()
             setLoading(false)
         })
