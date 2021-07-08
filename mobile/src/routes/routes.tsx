@@ -3,10 +3,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
 import Home from '../pages/Home'
 import PerDateRoutes from './perdate.routes'
-import PerCategory from '../pages/PerCategory';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { GestureResponderEvent, TouchableOpacity, View } from 'react-native';
-import PerDateRoutesList from './perdate.list.routes';
+import {TouchableOpacity } from 'react-native';
+import Categories from '../pages/Categories'; 
 
 const Tab = createBottomTabNavigator()
 
@@ -57,7 +56,7 @@ export const TabRoutes = () => (
         
         <Tab.Screen
             name="Categoria"
-            component={PerCategory}
+            component={Categories}
             options={{
                 tabBarLabel: 'Categorias',
                 tabBarIcon: ({color}) => <MaterialCommunityIcons name="format-list-bulleted" color={color} size={30} />

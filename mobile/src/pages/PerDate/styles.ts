@@ -1,11 +1,6 @@
 import { StyleSheet } from "react-native";
 
 
-const styles = StyleSheet.create({
-
-})
-
-
 const fileStyle = StyleSheet.create({
     container:{
         height: 80,
@@ -57,4 +52,4 @@ const fileStyle = StyleSheet.create({
     }
 })
 
-export {styles,fileStyle}
+export {fileStyle}

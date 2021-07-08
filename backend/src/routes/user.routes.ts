@@ -6,7 +6,7 @@ const userRoutes:Router = Router()
 
 userRoutes.use(authMiddleware)
 userRoutes.post('/category/add', controller.createCategory)
-userRoutes.delete('/category/remove/:name', controller.removeCategory)
+userRoutes.post('/category/remove/:name', controller.removeCategory)
 userRoutes.get('/category/list', controller.listCategory)
 
 
