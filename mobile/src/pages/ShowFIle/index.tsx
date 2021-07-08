@@ -47,7 +47,6 @@ const ShowFile:React.FC = () => {
 
         await api.post(`/edit/${file._id}`, req ,authorizaton(token))
         .then(() => {
-            Alert.alert('Sucesso!', 'Arquivo atualizado com sucesso!')
             navigation.goBack()
         }).catch((error) => {
             Alert.alert('Ops!', `${error.response.data.error}`)

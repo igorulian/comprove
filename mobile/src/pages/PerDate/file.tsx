@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TouchableOpacity, View,Text, FlatList } from 'react-native';
 import { fileStyle } from './styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { IFile } from '.';
 import { useNavigation } from '@react-navigation/native';
+import AuthContext from '../../context/auth';
 
 interface CatProps {
     name: string,
@@ -26,6 +27,8 @@ interface Props {
 
 const File:React.FC<Props> = ({file}: Props) => {
     const navigation = useNavigation()
+    const {user} = useContext(AuthContext)
+    const categories = user?.categories
 
     function showFile(){
         navigation.navigate('show', {file: file})
@@ -40,12 +43,18 @@ const File:React.FC<Props> = ({file}: Props) => {
     const fmonth:string = fixNumber(fdate.getMonth() + 1)
     const fyear:string = fixNumber(fdate.getFullYear())
 
+    let categorycolor = '#ccc'
+    categories?.map(category => {
+        if(category.name === file.category)
+            categorycolor = category.color
+    })
+
     return (
         <TouchableOpacity style={fileStyle.container} onPress={() => {showFile()}}>
             <View style={fileStyle.content}>
 
                 <View style={fileStyle.contentLeft}>
-                    <MaterialCommunityIcons name="file-document" color={'#f78139'} size={40} />
+                    <MaterialCommunityIcons name="file-document" color={'#333'} size={40} />
                     <View style={fileStyle.info}>
                         <Text> {file.title} </Text>
                         <Text style={fileStyle.datetxt}> {`${fday}/${fmonth}/${fyear}`} </Text>
@@ -53,7 +62,7 @@ const File:React.FC<Props> = ({file}: Props) => {
                 </View>
 
                 <View style={fileStyle.contentRight}>
-                    <Category name={file.category} color='#0b465e'/>
+                    <Category name={file.category} color={categorycolor}/>
                 </View>
 
                 <MaterialCommunityIcons name="chevron-right" color={'#333'} size={20} />
