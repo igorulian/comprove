@@ -57,6 +57,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'center'
     },
+    categoryScrollView:{
+        paddingBottom: 20
+    },
     datePicker:{
         width: 200,
         height: 120,
