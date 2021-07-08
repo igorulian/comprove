@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import {Model} from 'mongoose'
 import { FileModel, IFile } from "../models/file";
+import { IUser, UserModel } from "../models/user";
 
 const File:Model<IFile> = FileModel
+const User:Model<IUser> = UserModel
 
 type fileType = {
     originalname:string,
@@ -43,9 +45,24 @@ async function handleList(req:Request, res:Response){
 
 async function handleUpload(req:Request, res:Response){
     const {category,title} = req.query
+    const {userid} = req
     
     const categorytxt:string|undefined = category ? category.toString() : undefined
     const titletxt:string|undefined = title ? title.toString() : undefined
+    const user = await User.findById(userid)
+
+    let hasCategory = false
+
+    user.categories.forEach(cat => {
+        if(cat.name === categorytxt)
+            hasCategory = true
+    })
+
+    if(category){
+        if(!hasCategory)
+            return res.status(400).send({error: 'Categoria não existente'})
+    }
+
 
     const {originalname, location, mimetype} = req.file
 

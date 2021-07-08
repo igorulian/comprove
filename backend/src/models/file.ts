@@ -30,7 +30,7 @@ export const fileSchema:Schema = new Schema({
     },
     category:{
         type: String,
-        default: 'geral'
+        default: 'Geral'
     },
     title:{
         type: String,
