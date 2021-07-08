@@ -1,6 +1,6 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { SafeAreaView,Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import { SafeAreaView,Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import BackButton from '../../components/backButton';
 import { IFile } from '../PerDate';
 import {styles} from './styles'
@@ -9,6 +9,9 @@ import { useState } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Category } from '../PerDate/file';
 import DatePicker from 'react-native-date-picker'
+import { useContext } from 'react';
+import AuthContext, { AuthContextData, ICategory, IUser } from '../../context/auth';
+import api, { authorizaton } from '../../services/api';
 
 type IParams = {
     Props: {
@@ -24,15 +27,33 @@ interface ISelectableCategory {
 const ShowFile:React.FC = () => {
     const route = useRoute<RouteProp <IParams, 'Props'>>();
     const file = route.params.file
-    const fileSource = {uri:file.location};
-    const [loading,setLoading] = useState(false)
     const fileDate = new Date(file.createdAt)
+    const fileSource = {uri:file.location};
 
+    const [loading,setLoading] = useState(false)
     const [category,setCategory] = useState(file.category)
     const [date, setDate] = useState(fileDate)
+    const {user,token} = useContext<AuthContextData>(AuthContext)
 
-    function updateFile(){
+    const categories:ICategory[]|undefined = user?.categories
+
+    async function updateFile(){
         setLoading(true)
+        const req = {
+            createdAt: date,
+            category,
+        }   
+
+        console.log(req)
+
+        await api.post(`/edit/${file._id}`, req ,authorizaton(token))
+        .then((response) => {
+            Alert.alert('Sucesso!', 'Arquivo atualizado com sucesso!')
+        }).catch((error) => {
+            Alert.alert('Ops!', `${error.response.data.error}`)
+        })
+
+        setLoading(false)
     }
 
     const SelectableCategory:React.FC<ISelectableCategory> = ({name,color}:ISelectableCategory) => (
@@ -78,15 +99,13 @@ const ShowFile:React.FC = () => {
                 <Text style={styles.fileInfoText}> Categoria:</Text>
                 
                 <View style={styles.categoryContainer}>
-                    <SelectableCategory name='Categoria1' color='#f78139'/>
-                    <SelectableCategory name='Categoria2' color='#f78139'/>
-                    <SelectableCategory name='Categoria3' color='#f78139'/>
-                    <SelectableCategory name='Categoria4' color='#f78139'/>
-                </View>
-                <View style={styles.categoryContainer}>
-                    <SelectableCategory name='Categoria5' color='#f78139'/>
-                    <SelectableCategory name='Categoria6' color='#f78139'/>
-                    <SelectableCategory name='Categoria7' color='#f78139'/>
+                    <>
+                        {
+                            categories?.map(category => (
+                                <SelectableCategory key={category._id} name={category.name} color={category.color}/>
+                            ))
+                        }
+                    </>
                 </View>
 
                 <Text style={styles.fileInfoText}> Data:</Text>

@@ -5,19 +5,19 @@ import { AuthRoutes } from "../routes/auth.routes";
 import Loading from "../components/loading";
 import { TabRoutes } from "../routes/routes";
 
-interface ICategory {
+export interface ICategory {
     name: string,
     color: string,
     _id: string
 }
 
-interface IUser {
+export interface IUser {
     avatarUrl: string|undefined,
     _id: string|undefined,
     categories: ICategory[]
 }
 
-interface AuthContextData {
+export interface AuthContextData {
     signed: boolean,
     token: string|null,
     user: IUser|null,
