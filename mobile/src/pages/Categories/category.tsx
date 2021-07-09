@@ -19,6 +19,24 @@ const Category:React.FC<Props> = ({category}: Props) => {
     const [removeLoading, setRemoveLoading] = useState(false)
     const navigation = useNavigation()
 
+    async function removeCategoryConfirmation() {
+    
+        Alert.alert("Deseja remover a categoria?","Todos os arquivos ligados a ela perderão sua ligação",
+        [{
+            text: "Cancelar",
+            style: "cancel",
+        },
+        {
+            text: "Remover",
+            style: "default",
+            onPress: async () =>  { 
+                await removeCategory()
+            }
+        }]
+        ,{ cancelable: true })
+    }
+    
+
     async function removeCategory(){
         setRemoveLoading(true)
         await api.post(`/category/remove/${category.name}`,{},authorizaton(token))
@@ -47,7 +65,7 @@ const Category:React.FC<Props> = ({category}: Props) => {
                 <TouchableOpacity onPress={() => {editCategory()}}>    
                     <MaterialCommunityIcons name="pencil" color={'#0b465e'} size={30}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {removeCategory()} }>    
+                <TouchableOpacity onPress={() => {removeCategoryConfirmation()} }>    
                 {removeLoading ? <ActivityIndicator size={30} color={'#ff0000'}/> : <MaterialCommunityIcons name="close" color={'#ff0000'} size={30}/>}
                 </TouchableOpacity>
             </View>
