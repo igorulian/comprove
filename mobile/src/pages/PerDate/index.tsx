@@ -30,6 +30,13 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
     const [loading, setLoading] = useState(true)
     const [files,setFiles] = useState<IFile[]>([])
     const {token} = useContext(AuthContext)
+    const [refreshing, setRefresh] = useState<boolean>(false)
+
+    async function refreshFiles(){
+        setRefresh(true)
+        await requestFiles()
+        setRefresh(false)
+    }
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
@@ -71,6 +78,8 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
                 numColumns={1}
                 keyExtractor={item => item._id}
                 renderItem={({ item }: { item: IFile }) => <File file={item}/> }
+                onRefresh={() => {refreshFiles()}}
+                refreshing={refreshing}
             />
         </SafeAreaView>
     )

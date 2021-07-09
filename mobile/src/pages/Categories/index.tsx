@@ -13,7 +13,7 @@ const Categories:React.FC = () =>{
     const {user} = useContext(AuthContext)
     const categories = user?.categories
     const navigation = useNavigation()
-    const [refreshing, setRefresh] = useState(false)
+    const [refreshing, setRefresh] = useState<boolean>(false)
     const {token,updateUserCategories} = useContext(AuthContext)
 
     async function refreshCategories(){
