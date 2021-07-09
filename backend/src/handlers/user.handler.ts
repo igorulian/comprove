@@ -6,6 +6,13 @@ import { ICategory, IUser, UserModel } from "../models/user";
 const User:Model<IUser> = UserModel
 const File:Model<IFile> = FileModel
 
+async function getData(req:Request, res:Response){
+    const userid:string = req.userid
+    const user:IUser = await User.findById(userid)
+
+    return res.status(200).send(user)
+} 
+
 async function handleCreate(req:Request, res:Response){
     const userid:string = req.userid
     const newCategory:ICategory = req.body
@@ -88,8 +95,7 @@ async function handleEdit(req:Request, res:Response){
         await File.updateMany({category: categoryName}, {category: newCategoryData.name})
     }
 
-
     return res.status(200).send(updatedUser.categories)
 } 
 
-export {handleCreate, handleRemove,handleList,handleEdit}
+export {handleCreate, handleRemove,handleList,handleEdit,getData}

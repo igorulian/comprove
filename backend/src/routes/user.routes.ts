@@ -5,6 +5,7 @@ import {authMiddleware} from '../middlewares/auth.middleware'
 const userRoutes:Router = Router()
 
 userRoutes.use(authMiddleware)
+userRoutes.get('/data', controller.getData)
 userRoutes.post('/category/add', controller.createCategory)
 userRoutes.post('/category/remove/:name', controller.removeCategory)
 userRoutes.get('/category/list', controller.listCategory)
