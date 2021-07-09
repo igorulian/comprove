@@ -6,8 +6,6 @@ import multers3 from 'multer-s3'
 import dotenv from 'dotenv'
 dotenv.config()
 
-// console.log(new aws.S3())
-
 const storageType = {
     local: multer.diskStorage({
         destination: (req,file,cb) => {
@@ -15,7 +13,6 @@ const storageType = {
         },
         filename: (req,file,cb) => {
             crypto.randomBytes(16, (err, hash) => {
-                // if( err ) cb(err)
 
                 const userid = req.userid
                 const filename = `${userid}-${hash.toString('hex')}`

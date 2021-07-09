@@ -2,9 +2,14 @@ import { Request, Response } from "express";
 import {Model} from 'mongoose'
 import { FileModel, IFile } from "../models/file";
 import { IUser, UserModel } from "../models/user";
+import aws from 'aws-sdk'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const File:Model<IFile> = FileModel
 const User:Model<IUser> = UserModel
+const s3 = new aws.S3()
+const bucket = process.env.AWS_BUCKET
 
 type fileType = {
     originalname:string,
@@ -66,14 +71,14 @@ async function handleUpload(req:Request, res:Response){
 
     const {originalname, location, mimetype} = req.file
 
-        const newFileData:fileType = {
-            originalname,
-            location,
-            mimetype,
-            category: categorytxt,
-            title: titletxt,
-            ownerid: req.userid
-        }
+    const newFileData:fileType = {
+        originalname,
+        location,
+        mimetype,
+        category: categorytxt,
+        title: titletxt,
+        ownerid: req.userid
+    }
 
     const newFile:IFile = await File.create(newFileData)
 
@@ -85,6 +90,8 @@ async function handleRemove(req:Request, res:Response){
     const fileid = req.params.id
     const file = await File.findById(fileid)
 
+    const key:string = file.location.toString().replace('https://comprove-bucket.s3.sa-east-1.amazonaws.com/', '')
+
     if(!file)
         return res.status(400).send({error: 'File not found'})
 
@@ -92,6 +99,8 @@ async function handleRemove(req:Request, res:Response){
         return res.status(400).send({error: 'Invalid user'})
 
     await file.delete()
+
+    s3.deleteObject({Bucket: bucket, Key: key }, (err, data) => { })
 
     return res.status(200).send()
 } 
