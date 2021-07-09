@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import {Model} from 'mongoose'
+import { FileModel, IFile } from "../models/file";
 import { ICategory, IUser, UserModel } from "../models/user";
 
 const User:Model<IUser> = UserModel
+const File:Model<IFile> = FileModel
 
 async function handleCreate(req:Request, res:Response){
     const userid:string = req.userid
@@ -79,6 +81,12 @@ async function handleEdit(req:Request, res:Response){
             'categories.$': newCategoryData
         }
     }, {new: true})
+
+    //editing all the files connected to this category:
+
+    if(newCategoryData.name){
+        await File.updateMany({category: categoryName}, {category: newCategoryData.name})
+    }
 
 
     return res.status(200).send(updatedUser.categories)
