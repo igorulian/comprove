@@ -38,7 +38,7 @@ async function handleList(req:Request, res:Response){
     }
 
 
-    const files:IFile[] = await File.find(SearchTerm).select('+createdAt')
+    const files:IFile[] = await File.find(SearchTerm).select('+createdAt').sort({createdAt: 1})
 
     return res.status(200).send(files)
 }   
