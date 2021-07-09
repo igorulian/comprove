@@ -4,6 +4,7 @@ import {Dimensions, SafeAreaView, Text, TouchableOpacity, View} from 'react-nati
 import AuthContext from '../../context/auth';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from './styles'
+import { useNavigation } from '@react-navigation/native';
 
 
 const screenWidth = Dimensions.get('window').width
@@ -27,8 +28,12 @@ const ConfigButton:React.FC = () => (
 )
 
 export default function Home(){
-
     const {signOut} = useContext(AuthContext)
+    const navigation = useNavigation()
+
+    function goToUploadPage(){  
+        navigation.navigate('upload', {from: 'galery'})
+    }
     
     return (
         <SafeAreaView style={styles.container}>
@@ -43,7 +48,7 @@ export default function Home(){
 
             <Line/>
             
-            <TouchableOpacity style={styles.fileButton}>
+            <TouchableOpacity style={styles.fileButton} onPress={() => {goToUploadPage()}}>
                 <MaterialCommunityIcons name='file' size={100} color='#0b465e'/>
                 <Text style={styles.buttonText}> Escolher arquivo </Text>
                 <Text style={styles.buttonText}> da galeria </Text>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
-import Home from '../pages/Home'
+import UploadRoutes from './upload.routes'
 import PerDateRoutes from './perdate.routes'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TouchableOpacity } from 'react-native';
@@ -34,21 +34,21 @@ const UploadButton: React.FC|any = ({children, onPress}:ButtonTypes) => {
 }
 
 export const TabRoutes = () => (
-    <Tab.Navigator initialRouteName="Home" tabBarOptions={{activeTintColor: '#f78139', showLabel: false}}>
+    <Tab.Navigator initialRouteName="Home" tabBarOptions={{activeTintColor: '#f78139'}}>
         <Tab.Screen
             name="Data"
             component={PerDateRoutes}        
             options={{
-                tabBarLabel: 'Data',
+                tabBarLabel: 'Comprovantes',
                 tabBarIcon: ({color}) => <MaterialCommunityIcons name="calendar-text" color={color} size={30} />
-            }}  
+            }} 
         />  
                 
         <Tab.Screen
             name="Home"
-            component={Home}
+            component={UploadRoutes}
             options={{
-                tabBarLabel: 'Teste',
+                tabBarLabel: () => null,
                 tabBarIcon: () => (<MaterialCommunityIcons name="arrow-up" color={'#fff'} size={40} />),
                 tabBarButton: (props) => (<UploadButton {...props}/>) 
             }}  
