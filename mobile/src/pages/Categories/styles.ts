@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     categoryButtons:{
-        width: 80,
+        width: 130,
         height: 80,
         right: 0,
         position: 'absolute',

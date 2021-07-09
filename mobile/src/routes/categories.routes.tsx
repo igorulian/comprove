@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack'
 import Category from '../pages/Categories';
 import AddCategory from '../pages/Categories/Add';
 import EditCategory from '../pages/Categories/Edit';
+import ListPerCategory from '../pages/Categories/List';
 
 const Stack = createStackNavigator()
 
@@ -14,9 +15,6 @@ export const CategoriesRoutes:React.FC = () => {
             name='list'
             options={{ 
                 title: 'CATEGORIAS',
-                headerStyle:{
-                    // backgroundColor: '#0b465e'
-                },
                 headerTintColor: '#0b465e'
              }}
             component={Category}/>
@@ -36,6 +34,14 @@ export const CategoriesRoutes:React.FC = () => {
                 headerTintColor: '#0b465e'
              }}
             component={EditCategory}/>
+            
+            <Stack.Screen
+            name='listFiles'            
+            options={{ 
+                title: '',
+                headerTintColor: '#0b465e'
+             }}
+            component={ListPerCategory}/>
 
         </Stack.Navigator>
     )

@@ -55,6 +55,12 @@ const Category:React.FC<Props> = ({category}: Props) => {
         navigation.navigate('edit', {category: category})
     }
 
+    function goToList(){
+        navigation.navigate('listFiles', {
+            category
+        })
+    }
+
     return (
         <View style={styles.categoryContainer}>
             <View style={styles.categoryInfo}>
@@ -62,6 +68,9 @@ const Category:React.FC<Props> = ({category}: Props) => {
                 <Text style={styles.categoryName}> {`${category.name}`}</Text>
             </View>
             <View style={styles.categoryButtons}>
+                <TouchableOpacity onPress={() => {goToList()}}>    
+                    <MaterialCommunityIcons name="format-list-bulleted" color={'#ccc'} size={30}/>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => {editCategory()}}>    
                     <MaterialCommunityIcons name="pencil" color={'#0b465e'} size={30}/>
                 </TouchableOpacity>
