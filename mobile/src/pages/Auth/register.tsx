@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
 import AuthContext from '../../context/auth';
 import { useContext } from 'react';
+import LoginSvg from '../../assets/login.svg'
 
 export default function Register(){
     const [email,setEmail] = useState<string>('')
@@ -68,7 +69,7 @@ export default function Register(){
         <SafeAreaView style={GeneralStyles.container}>
 
             <View style={styles.logoContainer}>
-                <MaterialCommunityIcons name="folder" color={'#f78139'} size={60} />
+                <LoginSvg width={150} height={150}/>
                 <Text style={styles.logoText}> Registre-se </Text>
             </View>
 
@@ -79,6 +80,7 @@ export default function Register(){
                         style={styles.input}
                         onChangeText={(txt:string) => setEmail(txt)}
                         placeholder='Digite seu email'
+                        keyboardType='email-address'
                     />
                 </View>
 
@@ -88,6 +90,7 @@ export default function Register(){
                         style={styles.input}
                         onChangeText={(txt:string) => setPassword(txt)}
                         placeholder='Digite sua senha'
+                        secureTextEntry={password.length >= 1 ? true : false}
                     />
                 </View>
 
@@ -97,6 +100,7 @@ export default function Register(){
                         style={styles.input}
                         onChangeText={(txt:string) => setPassword2(txt)}
                         placeholder='Confirme sua senha'
+                        secureTextEntry={password2.length >= 1 ? true : false}
                     />
                 </View>
                 

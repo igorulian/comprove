@@ -2,6 +2,12 @@ import { StyleSheet } from "react-native";
 
 
 const styles = StyleSheet.create({
+    containerLogin: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     form:{
         marginBottom: 20,
         justifyContent: 'center'
@@ -86,7 +92,11 @@ const styles = StyleSheet.create({
     },
     logoContainer:{
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 10
+    },
+    logoContainerLogin:{
+        alignItems: 'center',
+        marginTop: -40
     },
     logoText:{
         fontSize: 20,

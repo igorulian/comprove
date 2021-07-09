@@ -8,6 +8,7 @@ import BackButton from '../../components/backButton';
 import generalStyles from '../../generalStyles';
 import api from '../../services/api';
 import AuthContext from '../../context/auth';
+import LoginSvg from '../../assets/login.svg'
 
 export default function Login(){
     const [email,setEmail] = useState<string>('')
@@ -52,11 +53,11 @@ export default function Login(){
     
 
     return (
-        <SafeAreaView style={generalStyles.container}>
+        <SafeAreaView style={styles.containerLogin}>
             <BackButton/>
 
-            <View style={styles.logoContainer}>
-                <MaterialCommunityIcons name="folder" color={'#f78139'} size={60} />
+            <View style={styles.logoContainerLogin}>
+                <LoginSvg width={150} height={150}/>
                 <Text style={styles.logoText}> Entrar </Text>
             </View>
 
@@ -67,6 +68,7 @@ export default function Login(){
                         style={styles.input}
                         onChangeText={(txt:string) => setEmail(txt)}
                         placeholder='Digite seu email'
+                        keyboardType='email-address'
                     />
                 </View>
 
@@ -76,6 +78,7 @@ export default function Login(){
                         style={styles.input}
                         onChangeText={(txt:string) => setPassword(txt)}
                         placeholder='Digite sua senha'
+                        secureTextEntry={password.length >= 1 ? true : false}
                     />
                 </View>
                 
@@ -84,8 +87,6 @@ export default function Login(){
                 </TouchableOpacity>
 
             </View>
-
-            <View style={styles.fillSpace}/>
 
         </SafeAreaView>
     )
