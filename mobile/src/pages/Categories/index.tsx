@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
-import {Text,SafeAreaView, FlatList, TouchableOpacity, Alert, ScrollView} from 'react-native'
+import {Text,SafeAreaView, FlatList, TouchableOpacity, Alert, ScrollView, RefreshControl} from 'react-native'
 import AuthContext, { ICategory } from '../../context/auth'
 import styles from './styles'
 import Category from './category'
@@ -44,7 +44,14 @@ const Categories:React.FC = () =>{
 
     return(
         <SafeAreaView style={styles.container}>
-            <ScrollView>
+            <ScrollView
+            refreshControl={
+                <RefreshControl
+                refreshing={refreshing}
+                onRefresh={refreshCategories}
+                />
+            }>
+            
                 {categories.map(category => (
                     <Category key={category._id} category={category}/>
                 ))}
