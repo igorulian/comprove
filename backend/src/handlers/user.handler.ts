@@ -58,4 +58,30 @@ async function handleList(req:Request, res:Response){
     return res.status(200).send(user.categories)
 } 
 
-export {handleCreate, handleRemove,handleList}
+async function handleEdit(req:Request, res:Response){
+    const userid:string = req.userid
+    const categoryName:string = req.params.name
+    const user:IUser = await User.findById(userid)
+    const newCategoryData = req.body
+
+    let hasCategory = false
+
+    user.categories.forEach(cat => {
+        if(cat.name === categoryName)
+            hasCategory = true
+    });
+
+    if(!hasCategory)
+        return res.status(400).send({error: 'Categoria não existente'})
+
+    const updatedUser:IUser = await User.findOneAndUpdate({_id: userid, 'categories.name': categoryName},{
+        $set: {
+            'categories.$': newCategoryData
+        }
+    }, {new: true})
+
+
+    return res.status(200).send(updatedUser.categories)
+} 
+
+export {handleCreate, handleRemove,handleList,handleEdit}

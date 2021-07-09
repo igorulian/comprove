@@ -8,6 +8,7 @@ userRoutes.use(authMiddleware)
 userRoutes.post('/category/add', controller.createCategory)
 userRoutes.post('/category/remove/:name', controller.removeCategory)
 userRoutes.get('/category/list', controller.listCategory)
+userRoutes.post('/category/edit/:name', controller.editCategory)
 
 
 export default userRoutes

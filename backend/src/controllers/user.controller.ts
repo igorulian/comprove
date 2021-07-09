@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { handleCreate, handleList, handleRemove } from "../handlers/user.handler"
+import { handleCreate, handleList, handleRemove,handleEdit } from "../handlers/user.handler"
 
 export = {
     async createCategory(req:Request, res:Response){
@@ -21,6 +21,13 @@ export = {
             return await handleList(req, res)
         }catch{
             return res.status(400).send({error: 'Erro ao listar categorias'})
+         }
+    },
+    async editCategory(req:Request, res:Response){
+        try{
+            return await handleEdit(req, res)
+        }catch{
+            return res.status(400).send({error: 'Erro ao editar categoria'})
          }
     },
 }
