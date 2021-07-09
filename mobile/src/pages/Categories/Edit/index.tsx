@@ -96,7 +96,7 @@ const EditCategory:React.FC = () => {
                 <Text style={styles.inputname}> Nome: </Text>
                 <TextInput
                 style={styles.input}
-                value={category.name}
+                defaultValue={category.name}
                 placeholder='Digite o nome da categoria'
                 onChangeText={(txt:string) => {setName(txt)}}
                 />
