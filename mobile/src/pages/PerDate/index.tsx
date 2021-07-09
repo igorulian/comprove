@@ -3,8 +3,9 @@ import React from 'react'
 import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Alert, FlatList, ListRenderItem, SafeAreaView, Text } from 'react-native'
+import { Alert, FlatList, ListRenderItem, SafeAreaView, Text, View } from 'react-native'
 import Loading from '../../components/loading'
+import NoContent from '../../components/noContent'
 import AuthContext from '../../context/auth'
 import { IMonth } from '../../routes/perdate.list.routes'
 import api, {authorizaton} from '../../services/api'
@@ -57,18 +58,14 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
 
 
     if(!focus)
-        return <SafeAreaView/>
+        return <View/>
 
     if(loading)
         return <Loading/>
 
-    if(files.length <= 0){
-        return (
-        <SafeAreaView>
-            <Text> Você ainda não possui nenhum comprovante esse mês</Text>
-        </SafeAreaView>
-        )
-    }
+    if(files.length <= 0)
+        return <NoContent text='nesse mês'/>
+    
     
 
     return(

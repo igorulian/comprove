@@ -5,10 +5,10 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Alert, FlatList, ListRenderItem, SafeAreaView, Text } from 'react-native'
 import Loading from '../../../components/loading'
+import NoContent from '../../../components/noContent'
 import AuthContext, { ICategory } from '../../../context/auth'
 import api, {authorizaton} from '../../../services/api'
 import File from '../../PerDate/file'
-import NoData from '../../../assets/nodata.svg'
 
 export interface IFile{
     _id: string,
@@ -64,11 +64,7 @@ const ListPerCategory:React.FC = () =>{
 
     if(files.length <= 0){
         return (
-        <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-            <NoData width={200} height={200}/>
-            <Text style={{marginTop: 20, fontWeight: '500'}}> Você ainda não possui nenhum </Text>
-            <Text style={{fontWeight: '500'}}> comprovante nessa categoria</Text>
-        </SafeAreaView>
+            <NoContent text='nessa categoria'/>
         )
     }
     
