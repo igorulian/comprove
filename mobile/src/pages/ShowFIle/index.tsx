@@ -101,7 +101,7 @@ const ShowFile:React.FC = () => {
 
     const SelectableCategory:React.FC<ISelectableCategory> = ({name,color}:ISelectableCategory) => (
         <TouchableOpacity onPress={() => {setCategory(name)}}>
-            <Category name={name} color={category === name ? '#f78139' : '#ccc'}/>
+            <Category name={name} color={category === name ? color : '#ccc'}/>
         </TouchableOpacity>
     )
 
