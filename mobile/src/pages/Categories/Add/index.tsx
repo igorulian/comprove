@@ -76,6 +76,9 @@ const AddCategory:React.FC = () => {
         if(!selectedColor.includes('#'))
             return Alert.alert('Ops!', 'Ocorreu um erro na criação da categoria')
 
+        if(name.length > 9)
+            return Alert.alert('Ops!', 'Tente digitar uma nome mais curto')
+
         handleCreateRequest()
     }
 
