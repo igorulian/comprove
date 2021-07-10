@@ -7,7 +7,8 @@ const fileStyle = StyleSheet.create({
         backgroundColor: '#fff',
         marginTop: 10,
         padding: 10,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        elevation: 2
     },
     content:{
         flex: 1,
