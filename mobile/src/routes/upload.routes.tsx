@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../pages/Home'
 import UploadFile from '../pages/Home/UploadFile'
+import Config from '../pages/Home/Config'
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,14 @@ const UploadRoutes:React.FC = () => {
                         headerTintColor: '#0b465e'
                      }}
                     component={UploadFile}
+                />
+                <Stack.Screen
+                    name={'config'}
+                    options={{ 
+                        title: 'Configurações',
+                        headerTintColor: '#0b465e'
+                     }}
+                    component={Config}
                 />
         </Stack.Navigator>
     )

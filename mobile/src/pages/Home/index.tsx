@@ -16,20 +16,14 @@ const Line:React.FC = () => (
     }}/>
 )
 
-const ConfigButton:React.FC = () => (
-    <TouchableOpacity style={{
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        margin: 20
-    }}>
-        <MaterialCommunityIcons name='cog' size={30} color='#333'/>
-    </TouchableOpacity>
-)
 
 export default function Home(){
     const {signOut} = useContext(AuthContext)
     const navigation = useNavigation()
+
+    function goToConfig(){
+        navigation.navigate('config')
+    }
 
     function goToUploadPage(){  
         navigation.navigate('upload', {from: 'galery'})
@@ -38,7 +32,14 @@ export default function Home(){
     return (
         <SafeAreaView style={styles.container}>
             
-            <ConfigButton/>
+            <TouchableOpacity style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                margin: 20
+            }} onPress={() => {goToConfig()}}>
+                <MaterialCommunityIcons name='cog' size={30} color='#333'/>
+            </TouchableOpacity>
 
             <TouchableOpacity style={styles.cameraButton}>
                 <MaterialCommunityIcons name='camera' size={100} color='#0b465e'/>
