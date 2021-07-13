@@ -34,7 +34,7 @@ const UploadButton: React.FC|any = ({children, onPress}:ButtonTypes) => {
 }
 
 export const TabRoutes = () => (
-    <Tab.Navigator initialRouteName="Home" tabBarOptions={{activeTintColor: '#f78139'}}>
+    <Tab.Navigator initialRouteName="Home" tabBarOptions={{activeTintColor: '#0b465e'}}>
         <Tab.Screen
             name="Data"
             component={PerDateRoutes}        

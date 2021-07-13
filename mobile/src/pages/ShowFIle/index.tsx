@@ -1,6 +1,6 @@
 import { NavigationProp, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { SafeAreaView,Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator, Alert, FlatList } from 'react-native';
+import {Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import BackButton from '../../components/backButton';
 import { IFile } from '../PerDate';
 import {styles} from './styles'
@@ -28,6 +28,9 @@ interface IRemoveBtnProps {
     file: IFile,
     token: string|null,
     goBack: Function
+}
+
+async function shareFile(){
 }
 
 
@@ -63,7 +66,7 @@ async function removeFile(file:IFile, token:string|null, goBack:Function) {
 const RemoveButton:React.FC<IRemoveBtnProps> = ({file,token,goBack}:IRemoveBtnProps) => {
     return(
         <TouchableOpacity style={styles.closeButton} onPress={() => {removeFile(file,token,goBack)}}>
-            <MaterialCommunityIcons name='close' size={30} color={'#ff0000'}/>
+            <MaterialCommunityIcons name='delete-outline' size={30} color={'#ff0000'}/>
         </TouchableOpacity>
     )
 }
@@ -112,7 +115,7 @@ const ShowFile:React.FC = () => {
             <RemoveButton file={file} token={token} goBack={() => {navigation.goBack()}}/>
             <View style={styles.fileContainer}>
 
-                <TouchableOpacity style={styles.shareButton}>
+                <TouchableOpacity style={styles.shareButton} onPress={() => {shareFile()}}>
                     <MaterialCommunityIcons name="share-circle" color={'#0b465e'} size={50}/>
                 </TouchableOpacity>
 
