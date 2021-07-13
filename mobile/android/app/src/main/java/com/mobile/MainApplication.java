@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
 import com.horcrux.svg.SvgPackage;
 import com.reactnativecommunity.androidprogressbar.RNCProgressBarPackage;
 import com.facebook.react.ReactInstanceManager;
