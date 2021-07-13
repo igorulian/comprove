@@ -1,4 +1,4 @@
-import { NavigationProp, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import {Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import BackButton from '../../components/backButton';
@@ -12,6 +12,8 @@ import DatePicker from 'react-native-date-picker'
 import { useContext } from 'react';
 import AuthContext, { AuthContextData, ICategory } from '../../context/auth';
 import api, { authorizaton } from '../../services/api';
+import Share from 'react-native-share';
+import RNFetchBlob from 'rn-fetch-blob';
 
 type IParams = {
     Props: {
@@ -28,9 +30,36 @@ interface IRemoveBtnProps {
     file: IFile,
     token: string|null,
     goBack: Function
+} 
+
+async function sharePDFWithAndroid(fileUrl:string, type:string) {
+    let filePath = null;
+    let file_url_length = fileUrl.length;
+    const configOptions = { fileCache: true };
+    const data = await RNFetchBlob.config(configOptions)
+      .fetch('GET', fileUrl)
+      .then(resp => {
+        filePath = resp.path();
+        return resp.readFile('base64');
+      })
+      .then(async base64Data => {
+        base64Data = `data:${type};base64,` + base64Data;
+        console.log(`Base64: `)
+        console.log(base64Data)
+        return base64Data
+      });
+      return data
 }
 
-async function shareFile(){
+async function shareFile(file:IFile){
+    const data = await sharePDFWithAndroid(file.location, file.mimetype)
+    try {
+        await Share.open({
+            title: 'Compartilhar comprovante',
+            url:  data
+        });
+
+    }catch{}
 }
 
 
@@ -115,7 +144,7 @@ const ShowFile:React.FC = () => {
             <RemoveButton file={file} token={token} goBack={() => {navigation.goBack()}}/>
             <View style={styles.fileContainer}>
 
-                <TouchableOpacity style={styles.shareButton} onPress={() => {shareFile()}}>
+                <TouchableOpacity style={styles.shareButton} onPress={() => {shareFile(file)}}>
                     <MaterialCommunityIcons name="share-circle" color={'#0b465e'} size={50}/>
                 </TouchableOpacity>
 
