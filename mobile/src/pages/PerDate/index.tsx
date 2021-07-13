@@ -48,6 +48,7 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
       }, [navigation]);
 
     const requestFiles = async () => {
+        if(!focus) return
         await api.get(`/list?month=${month?.number}`, authorizaton(token)).then(response => {
             setFiles(response.data)
         }).catch(error => {
@@ -58,7 +59,7 @@ const PerDate:React.FC<Props> = ({month}: Props) =>{
 
 
     if(!focus)
-        return <View/>
+        return null
 
     if(loading)
         return <Loading/>
