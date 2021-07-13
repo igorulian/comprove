@@ -10,9 +10,9 @@ const App:React.FC = () => {
   return (
       <NavigationContainer>
         <StatusBar
-        animated={true}
-        backgroundColor="#0b465e"
-        barStyle='light-content'/>
+          animated={true}
+          backgroundColor="#0b465e"
+          barStyle='light-content'/>
         <AuthProvider/>
       </NavigationContainer>
   );

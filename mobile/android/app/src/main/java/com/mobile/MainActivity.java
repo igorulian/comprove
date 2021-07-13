@@ -1,7 +1,12 @@
 package com.mobile;
 
+import android.os.Bundle; // <- splash-screen
+
 import com.facebook.react.ReactActivity;
 import com.reactnativecommunity.androidprogressbar.RNCProgressBarPackage; // pdf
+
+import com.zoontek.rnbootsplash.RNBootSplash; // <- splash-screen
+
 
 public class MainActivity extends ReactActivity {
 
@@ -13,4 +18,11 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "comprove";
   }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    RNBootSplash.init(R.drawable.bootsplash, MainActivity.this); // <- display the generated bootsplash.xml drawable over our MainActivity
+  }
+
 }

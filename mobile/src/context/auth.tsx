@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AuthRoutes } from "../routes/auth.routes";
 import Loading from "../components/loading";
 import { TabRoutes } from "../routes/routes";
+import RNBootSplash from "react-native-bootsplash";
 
 export interface ICategory {
     name: string,
@@ -46,6 +47,7 @@ export const AuthProvider:React.FC = ({children}) => {
           setToken(storageToken)
           setUser(storageUser ? JSON.parse(storageUser) : null)
           setLoading(false)
+          await RNBootSplash.hide({fade: true});
         }
     
         checkToken()
