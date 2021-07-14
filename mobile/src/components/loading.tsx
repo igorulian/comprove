@@ -6,7 +6,7 @@ const Loading:React.FC = () =>{
 
     return (
         <View style={styles.container}>
-             <ActivityIndicator size="large" color="#f78139"/>
+             <ActivityIndicator size="large" color="#0b465e"/>
         </View>
     )
 }
