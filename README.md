@@ -22,7 +22,7 @@ Na pagia de categorias você pode criar, excluir, editar e ver todos os comprova
 
 #### 📄 Comprovantes:
 Os comprovantes podem ser encontrados organizados por data, na aba 'Comprovantes'.
-Na mesma pode-se editar, excluir e até mesmo compartilhar o comprovante para outro aplicativo (como whatsapp)
+Na mesma pode-se editar, excluir e até mesmo compartilhar o comprovante para outros aplicativos (como whatsapp)
 
 
 ---
@@ -116,7 +116,7 @@ $ npx react-native run-ios (ios)
 ---
 
 ## 📝 [Licença](./LICENSE.md)
-<p> Esse projeto está sobre licença MIT </p>
+<p> Esse projeto está sob licença MIT </p>
 
 ---
 
