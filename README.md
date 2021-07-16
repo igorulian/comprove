@@ -103,16 +103,16 @@ $ npx react-native run-ios (ios)
 
 #### ⚙️ **Servidor**
 
--   **[Nodejs](https://www.npmjs.com/package/express)**
--   **[AWS-S3](https://www.npmjs.com/package/aws-sdk)**
--   **[TypeScript](https://www.npmjs.com/package/bcryptjs)**
--   **[MongoDB](https://www.npmjs.com/package/multer)**
+-   **[Nodejs](https://nodejs.org/en/)**
+-   **[AWS-S3](https://aws.amazon.com/s3/)**
+-   **[TypeScript](https://www.npmjs.com/package/typescript)**
+-   **[MongoDB](https://www.mongodb.com)**
 
 
 #### 📱 **Aplicativo** 
 
--   **[React Native](https://www.npmjs.com/package/react-navigation)**
--   **[TypeScript](https://www.npmjs.com/package/react-native-deck-swiper)**
+-   **[React Native](https://reactnative.dev/)**
+-   **[TypeScript](https://www.npmjs.com/package/typescript)**
 
 ---
 
