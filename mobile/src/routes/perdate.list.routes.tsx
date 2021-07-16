@@ -81,8 +81,12 @@ const PerDateRoutesList:React.FC = () => {
 
 
     return (
-        <Tab.Navigator initialRouteName={currentMonth?.initials} tabBarOptions={{scrollEnabled: true , tabStyle:{width: 100}, 
-            indicatorStyle: {backgroundColor:'#f78139'}}}>
+        <Tab.Navigator initialRouteName={currentMonth?.initials} tabBarOptions={{
+            scrollEnabled: true,
+            tabStyle:{width: 100, backgroundColor:'#0b465e'}, 
+            activeTintColor: '#fff', 
+            indicatorStyle: {backgroundColor:'#fff'}}}>
+
             {months.map(month => (
                 <Tab.Screen
                     key={month.number} 
@@ -90,6 +94,7 @@ const PerDateRoutesList:React.FC = () => {
                     children={() => <PerDate month={month}/>}
                 />
             ))}
+
         </Tab.Navigator>
     )
 }

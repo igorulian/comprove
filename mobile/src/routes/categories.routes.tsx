@@ -9,38 +9,34 @@ const Stack = createStackNavigator()
 
 export const CategoriesRoutes:React.FC = () => {
 
+    const screenOptions = (title:string) => ({
+        title: title,
+        headerTintColor: '#fff',
+        headerStyle:{
+            backgroundColor: '#0b465e'
+        }
+    })
+
     return(
         <Stack.Navigator initialRouteName='list'>
             <Stack.Screen
             name='list'
-            options={{ 
-                title: 'CATEGORIAS',
-                headerTintColor: '#0b465e'
-             }}
+            options={screenOptions('CATEGORIAS')}
             component={Category}/>
             
             <Stack.Screen
             name='add'            
-            options={{ 
-                title: 'CRIAR CATEGORIA',
-                headerTintColor: '#0b465e'
-             }}
+            options={screenOptions('CRIAR CATEGORIA')}
             component={AddCategory}/>
             
             <Stack.Screen
             name='edit'            
-            options={{ 
-                title: 'EDITAR CATEGORIA',
-                headerTintColor: '#0b465e'
-             }}
+            options={screenOptions('EDITAR CATEGORIA')}
             component={EditCategory}/>
             
             <Stack.Screen
             name='listFiles'            
-            options={{ 
-                title: '',
-                headerTintColor: '#0b465e'
-             }}
+            options={screenOptions('')}
             component={ListPerCategory}/>
 
         </Stack.Navigator>
