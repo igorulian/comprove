@@ -1,16 +1,15 @@
 
 
-<h1 align="center">
-     <a href="#" alt="site do ecoleta"> Comprove </a>
+<h1 align="center" href="https://github.com/igorulian/comprove">
+     <a href="https://github.com/igorulian/comprove">
+ <img src="https://github.com/igorulian/comprove/blob/main/assets/comprove-full-icon.png" alt="register" border="0" width="30%" heigth="30%">
+     </a>
 </h1>
 
 <h3 align="center">
     Aplicativo para guardar, organizar e categorizar seus comprovantes.
 </h3>
 
-<p align="center">
-     <a href="./README-en.md" alt="Readme english version"> English Version 🇺🇸 </a>
-</p>
 
 ## 💻 Sobre o projeto
 
@@ -117,8 +116,13 @@ $ npx react-native run-ios (ios)
 ---
 
 ## 📝 [Licença](./LICENSE.md)
+<p> Esse projeto está sobre licença MIT </p>
 
-Esse projeto está sobre lisença MIT
 ---
 
 Feito com ❤️ por Igor Ulian :)
+
+---
+## README Version
+
+[Português 🇧🇷](./README.md) [English 🇺🇸](./README-en.md)
