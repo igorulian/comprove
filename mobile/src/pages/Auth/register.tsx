@@ -69,7 +69,7 @@ export default function Register(){
         <SafeAreaView style={GeneralStyles.container}>
 
             <View style={styles.logoContainer}>
-                <LoginSvg width={150} height={150}/>
+                <LoginSvg width={150} height={180}/>
                 <Text style={styles.logoText}> Registre-se </Text>
             </View>
 

@@ -57,7 +57,7 @@ export default function Login(){
             <BackButton/>
 
             <View style={styles.logoContainerLogin}>
-                <LoginSvg width={150} height={150}/>
+                <LoginSvg width={150} height={180}/>
                 <Text style={styles.logoText}> Entrar </Text>
             </View>
 

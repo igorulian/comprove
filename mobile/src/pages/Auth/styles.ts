@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-start',
+        paddingTop: 100
     },
     form:{
         marginBottom: 20,
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     button:{
         height: 45,
         width: 180,
-        backgroundColor: '#f78139',
+        backgroundColor: '#0b465e',
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center'
@@ -100,7 +101,8 @@ const styles = StyleSheet.create({
     },
     logoText:{
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginTop: -10
     },
     orLoginButton:{
         marginTop: 20,
